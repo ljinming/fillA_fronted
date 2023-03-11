@@ -3,7 +3,8 @@
 import { useEffect, useState } from "react";
 import copy from "copy-to-clipboard";
 import { Typography, Tooltip, Image } from "antd";
-import CopyIcon from "@/assets/images/icon/copy.svg";
+import { copySvg } from "@/svgIcons";
+
 const { Text } = Typography;
 
 interface propsType {
@@ -48,7 +49,7 @@ const CSCopy = (props: propsType) => {
       ellipsis={{ suffix }}
       copyable={{
         text: value,
-        icon: <Image src={CopyIcon} width={14} preview={false} />,
+        // icon: <Image src={copySvg} width={14} preview={false} />,
       }}
       onClick={handleCopy}>
       {start}...

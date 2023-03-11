@@ -1,0 +1,110 @@
+@font-face {
+  font-family: 'Barlow-Bold';
+  src: url('./assets/font/Barlow-Bold.ttf');
+  font-display: auto;
+}
+@font-face {
+  font-family: 'Poppins';
+  src: url('./assets/font/poppins/Poppins-Regular.ttf');
+  font-display: auto;
+}
+body {
+  margin: 0;
+  font-family: -apple-system,Poppins, Barlow-Bold, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+.app{
+position: relative;
+width: 100%;
+background-repeat:  no-repeat;
+background-size:100% 100%;
+background-attachment:fixed;
+margin:0px;
+color: #23262F;
+overflow: hidden;
+}
+.bg-Content{
+  width: 1440px;
+}
+.app-content{
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  height: 100vh;
+  overflow-y: auto;
+}
+.ant-tabs-tab-btn{
+  font-size: 18;
+  font-weight: 600;
+}
+.title-icon{
+font-size: 12px;
+font-family: Poppins;
+color: #45B26B;
+line-height: 16px;
+-webkit-background-clip: text;
+}
+.h3-title{
+  font-size: 66px;
+font-family: Barlow-ExtraBold, Barlow;
+font-weight: 800;
+color: #23262F;
+margin: 0px;
+padding:0px
+}
+
+.custom-input{
+  height: 32px;
+  background-color: antiquewhite;
+  border-color:antiquewhite ;
+  &:hover,&:focus{
+    background-color: antiquewhite;
+    border-color:antiquewhite ;
+    box-shadow:none
+  }
+}
+
+.connect-btn{
+    background-color: rgba(255, 173, 169, 1);
+    border-color:  rgba(255, 173, 169, 1);;
+    &:hover{
+        background-color: rgba(255, 173, 169, 1);
+        border-color:  rgba(255, 173, 169, 1) !important; 
+        color: #000 !important;
+
+    }
+}
+.border-btn{
+    cursor: pointer;
+     border:1px solid  rgba(255, 173, 169, 1);
+     background-color: transparent !important;
+      &:hover{
+        background-color: transparent !important;
+        border-color:  rgba(255, 173, 169, 1) !important; 
+        color: #000 !important;
+
+    }
+}
+
+.font-wrap{
+      overflow: hidden;
+    width: 90%;
+    font-size: 12px;
+    word-break: break-all;
+}
+@media screen and (max-width: 800px){
+  .app-content{
+    overflow-x: hidden;
+  }
+  .h3-title{
+  font-size: 16px;
+  font-weight: 600;
+}
+.custom-input{
+  height: 32px;
+}
+}

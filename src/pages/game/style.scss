@@ -1,0 +1,167 @@
+.share-game{
+    .steps-content{
+        width: 80%;
+        margin: 30px auto;
+        
+    }
+    .card{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 38%;
+    min-width: 200px;
+    min-height: 200px;
+    margin: 50px auto;
+    align-items: center;
+    padding: 20px;
+    background-color: rgba(248, 248, 249, 0.6);
+    //box-shadow: 0px 40px 32px -24px rgba(15,15,15,0.12);
+    &-header{
+        width: 100%;
+        text-align: center;
+       
+        .value{
+            font-size: 28px;
+            font-weight: 800;
+        }
+    }
+   .detail{
+       width: 80%;
+       flex: 1;
+       .img{
+           width: 100%;
+       }
+   }
+      
+   &-footer{
+       display: flex;
+       align-items: center;
+       cursor: pointer;
+       .icon{
+           width: 20px;
+           margin-right: 10px;
+       }
+   }
+   .btn{
+            cursor: pointer;
+            padding: 6px 15px;
+            border-radius: 10px;
+            width: 40%;
+            text-align: center;
+            &:hover{
+                background-color: rgba(255, 173, 169, 1) !important;
+            }
+        }
+    
+    }
+    .game-step_2{
+        max-width: 1062px;
+        margin: auto;
+        .game-card{
+            width: 80%;
+            margin: auto;
+            .game-title{
+                text-align: center;
+            }
+            .detail{
+                width: 100%;
+                text-align: center;
+                .value{
+                    color: #FF6633;
+                    font-weight: 800;
+
+                }
+            }
+        }
+        .game-header{
+        text-align: center;
+        margin-top: 80px;
+        .title{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            column-gap: 10px;
+            //justify-content: space-between;
+        }
+        .value{
+            //font-size: 28px;
+            color: #FF6633;
+            font-weight: 600;
+        }
+        }
+        .card-content{
+        display: flex;
+        column-gap: 20px;
+        .card{
+           flex: 1;
+           width: 50%;
+           margin-top: 0px;
+           .detail{
+            width: 90%;
+            &_text{
+                color: rgba(0, 0, 0, 0.45);
+            }
+            .input-label{
+                font-size: 16px;
+                margin: 20px 0px 30px 0px;
+            }
+           }   
+        }
+        }
+       
+
+    }
+    .step_3{
+      .card-footer{
+          display: block;
+          .item{
+              display: flex;
+              align-items: center;
+              margin-top: 10px;
+              .logo{
+                  width: 30px;
+              }
+                .img{
+                            width: 20px;
+                    
+                        }
+          }
+          
+      }
+    }
+}
+
+@media screen and (max-width: 800px){
+    .share-game {
+         .card{
+        width: 100%;
+            .card-footer{
+                margin-top: 20px;
+                .item{
+                    .logo{
+                        width: 30px;
+                    }
+                    .img{
+                        width: 20px;
+                    }
+                }
+            }
+        }
+         .game-step_2 {
+             .card-content {
+                 flex-wrap: wrap;
+                 row-gap: 20px;
+                 .card{
+                     width: 100%;
+                     flex: none;
+                 }
+             }
+         }
+    }
+    .calc-icon{
+        display: flex !important;
+        align-items: center !important;
+        width: 25px !important;
+    }
+
+}

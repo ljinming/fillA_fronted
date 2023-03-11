@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="1231px" height="490px" viewBox="0 0 1231 490" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>编组 5</title>
+    <defs>
+        <linearGradient x1="1.22124533e-13%" y1="1.44328993e-13%" x2="78.1250003%" y2="100.000002%" id="linearGradient-1">
+            <stop stop-color="#E8CDFF" offset="0%"></stop>
+            <stop stop-color="#FFB8BD" offset="100%"></stop>
+        </linearGradient>
+        <linearGradient x1="1.22124533e-13%" y1="1.44328993e-13%" x2="78.1250003%" y2="100.000002%" id="linearGradient-2">
+            <stop stop-color="#C3DBFF" offset="0%"></stop>
+            <stop stop-color="#A887EA" offset="100%"></stop>
+        </linearGradient>
+        <linearGradient x1="1.22124533e-13%" y1="1.44328993e-13%" x2="78.1250003%" y2="100.000002%" id="linearGradient-3">
+            <stop stop-color="#FFE2BC" offset="0%"></stop>
+            <stop stop-color="#FF965C" offset="100%"></stop>
+        </linearGradient>
+    </defs>
+    <g id="页面-1" stroke="none" strokeWidth="1" fill="none" fill-rule="evenodd">
+        <g id="FilaDoge-切图" transform="translate(-59.000000, -137.000000)" fill-rule="nonzero">
+            <g id="编组-5" transform="translate(59.000000, 137.000000)">
+                <path d="M20,317 C20,322.5228 15.5228,327 10,327 C4.47715,327 0,322.5228 0,317 C0,311.47715 4.47715,307 10,307 C15.5228,307 20,311.47715 20,317 Z" id="gradient-dot-03" fill="url(#linearGradient-1)"></path>
+                <path d="M924,18 C924,27.9411 915.9411,36 906,36 C896.05887,36 888,27.9411 888,18 C888,8.05887 896.05887,0 906,0 C915.9411,0 924,8.05887 924,18 Z" id="gradient-dot-04" fill="url(#linearGradient-2)"></path>
+                <path d="M290,394 C290,403.9411 281.9411,412 272,412 C262.05887,412 254,403.9411 254,394 C254,384.05887 262.05887,376 272,376 C281.9411,376 290,384.05887 290,394 Z" id="gradient-dot-04备份" fill="url(#linearGradient-2)"></path>
+                <path d="M1088,412 C1088,421.9411 1079.9411,430 1070,430 C1060.05887,430 1052,421.9411 1052,412 C1052,402.05887 1060.05887,394 1070,394 C1079.9411,394 1088,402.05887 1088,412 Z" id="gradient-dot-04备份-3" fill="url(#linearGradient-2)"></path>
+                <path d="M1231,342 C1231,348.6274 1225.6274,354 1219,354 C1212.37258,354 1207,348.6274 1207,342 C1207,335.37258 1212.37258,330 1219,330 C1225.6274,330 1231,335.37258 1231,342 Z" id="gradient-dot-01" fill="url(#linearGradient-3)"></path>
+                <path d="M667,480.5 C667,485.7467 662.7467,490 657.5,490 C652.25329,490 648,485.7467 648,480.5 C648,475.25329 652.25329,471 657.5,471 C662.7467,471 667,475.25329 667,480.5 Z" id="gradient-dot-02" fill="url(#linearGradient-1)"></path>
+                <path d="M260,35.5 C260,40.7467 255.7467,45 250.5,45 C245.25329,45 241,40.7467 241,35.5 C241,30.25329 245.25329,26 250.5,26 C255.7467,26 260,30.25329 260,35.5 Z" id="gradient-dot-02备份" fill="url(#linearGradient-1)"></path>
+            </g>
+        </g>
+    </g>
+</svg>

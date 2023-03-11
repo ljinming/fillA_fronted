@@ -1,0 +1,47 @@
+.header{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 1062px;
+    margin: auto;
+    height: 60px;
+    .header-logo{
+        display: flex;
+        align-items: center;
+        cursor: pointer;
+    }
+    &_logo{
+        width: 40px;
+        &_text{
+            margin-left: 6px;
+            font-size: 14px;
+            font-family: Barlow-SemiBold, Barlow;
+            font-weight: 600;
+            color: #23262F;
+        }
+    }
+    &_right{
+        display: flex;
+        align-items: center;
+        flex-direction: row;
+        justify-content: center;
+        column-gap: 20px;
+        .logout{
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+        }
+    }
+    
+}
+
+
+@media screen and (max-width: 800px) {
+   .header{
+       width: 100%;
+      padding: 10px;
+      &_logo{
+          width: 35px;
+      }
+   }
+}

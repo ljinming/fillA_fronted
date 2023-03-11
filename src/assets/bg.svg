@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="1440px" height="2754px" viewBox="0 0 1440 2754" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>Gradient@3x</title>
+    <defs>
+        <filter x="-179.4%" y="-179.4%" width="458.9%" height="458.9%" filterUnits="objectBoundingBox" id="filter-1">
+            <feGaussianBlur stdDeviation="128" in="SourceGraphic"></feGaussianBlur>
+        </filter>
+        <filter x="-144.6%" y="-144.6%" width="389.2%" height="389.2%" filterUnits="objectBoundingBox" id="filter-2">
+            <feGaussianBlur stdDeviation="80" in="SourceGraphic"></feGaussianBlur>
+        </filter>
+        <filter x="-130.5%" y="-130.5%" width="361.0%" height="361.0%" filterUnits="objectBoundingBox" id="filter-3">
+            <feGaussianBlur stdDeviation="177.464401" in="SourceGraphic"></feGaussianBlur>
+        </filter>
+        <filter x="-144.6%" y="-144.6%" width="389.2%" height="389.2%" filterUnits="objectBoundingBox" id="filter-4">
+            <feGaussianBlur stdDeviation="130.113235" in="SourceGraphic"></feGaussianBlur>
+        </filter>
+        <filter x="-179.4%" y="-179.4%" width="458.9%" height="458.9%" filterUnits="objectBoundingBox" id="filter-5">
+            <feGaussianBlur stdDeviation="208.181168" in="SourceGraphic"></feGaussianBlur>
+        </filter>
+        <filter x="-34.3%" y="-34.3%" width="168.6%" height="168.6%" filterUnits="objectBoundingBox" id="filter-6">
+            <feGaussianBlur stdDeviation="84.9142838" in="SourceGraphic"></feGaussianBlur>
+        </filter>
+    </defs>
+    <g id="页面-1" stroke="none" strokeWidth="1" fill="none" fill-rule="evenodd">
+        <g id="FilaDoge-切图" transform="translate(0.000000, 3.000000)" fill-rule="nonzero">
+            <g id="编组-2" transform="translate(-124.000000, -3.000000)">
+                <path d="M496,205 C496,264.094 448.094,312 389,312 C329.9055,312 282,264.094 282,205 C282,145.9055 329.9055,98 389,98 C448.094,98 496,145.9055 496,205 Z" id="gradient-2" fill="#D6FFDD" filter="url(#filter-1)"></path>
+                <path d="M597,83 C597,128.84 559.84,166 514,166 C468.1604,166 431,128.84 431,83 C431,37.1604 468.1604,0 514,0 C559.84,0 597,37.1604 597,83 Z" id="gradient-1" fill="#FFA4E0" opacity="0.300000012" filter="url(#filter-2)"></path>
+                <path d="M1726,914 C1726,1026.666 1634.666,1118 1522,1118 C1409.3339,1118 1318,1026.666 1318,914 C1318,801.3339 1409.3339,710 1522,710 C1634.666,710 1726,801.3339 1726,914 Z" id="gradient-2" fill="#C9FFF5" filter="url(#filter-3)"></path>
+                <g id="Gradient" transform="translate(0.000000, 1026.000000)">
+                    <path d="M431.000335,424.799556 C431.000335,499.354556 370.562335,559.792556 296.007335,559.792556 C221.453535,559.792556 161.015335,499.354556 161.015335,424.799556 C161.015335,350.245756 221.453535,289.807556 296.007335,289.807556 C370.562335,289.807556 431.000335,350.245756 431.000335,424.799556 Z" id="gradient-1" fill="#FFA4E0" filter="url(#filter-4)"></path>
+                    <path d="M348.053,174.026 C348.053,270.139 270.139,348.053 174.026,348.053 C77.9143,348.053 0,270.139 0,174.026 C0,77.9143 77.9143,0 174.026,0 C270.139,0 348.053,77.9143 348.053,174.026 Z" id="gradient-2" fill="#A4A8FF" filter="url(#filter-5)"></path>
+                </g>
+                <rect id="gradient-bg" fill="" opacity="0.400000006" style="mix-blend-mode: multiply;" filter="url(#filter-6)" x="1049" y="1708" width="743" height="743" rx="371.5"></rect>
+            </g>
+        </g>
+    </g>
+</svg>

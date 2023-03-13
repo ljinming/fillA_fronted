@@ -4,13 +4,21 @@ import Twitter from "@/assets/twitter.svg";
 import { useParams } from "react-router-dom";
 import copy from "copy-to-clipboard";
 import { MyContext } from "@/pages/content";
+import fa from "@glif/filecoin-address";
+
 import { message } from "antd";
 import { useContext } from "react";
 
+enum CoinType {
+    MAIN = "f",
+    TEST = "t",
+}
+  
 export default () => {
   const context = useContext<any>(MyContext);
-  const shareUrl = `${window.location.href}${
-    context?.account ? `/${context?.account}` : ""
+  const f4Address = context?.account&&fa.delegatedFromEthAddress(context?.account,CoinType.MAIN).toString();
+  const shareUrl = `${window.location.host}/share${
+    context?.account ? `/${f4Address}` : ""
   }`;
   const shareTitle =
     "Welcome to @FilaDoge , win free $FLD tokens through game and lottery";

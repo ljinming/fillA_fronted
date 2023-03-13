@@ -18,7 +18,7 @@ const router = createBrowserRouter([
     element: <Game />,
   },
   {
-    path: "/share/:adress",
+    path: "/share/:address",
     element: <Game />,
   },
 ]);

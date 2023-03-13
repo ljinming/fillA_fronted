@@ -1,8 +1,11 @@
 /** @format */
 import Calc from "@/components/calc";
-import { Input, message } from "antd";
+import { Button, Input, message } from "antd";
 import { MyContext } from "@/pages/content";
 import { useParams } from "react-router-dom";
+import { InputNumber } from 'antd';
+import { BigNumber, utils } from "ethers";
+
 //import Contract from "@/server/Contract";
 import { useState, useContext, useEffect, useRef } from "react";
 import Web3 from "@/server/Web3";
@@ -14,6 +17,8 @@ export default () => {
   const [banlance, setBanlance] = useState<string | number>(0);
   const [mint, setMint] = useState("");
   const [game, setGame] = useState("");
+  const [sendValue, setSendValue] = useState("");
+  const [amount,setAmount] = useState<number|any>();
   const [loading, setLoading] = useState<Record<string, boolean>>({
     mint: false,
     game: false,
@@ -23,6 +28,7 @@ export default () => {
     game: false,
   });
   let { address } = useParams();
+  
   useEffect(() => {
     if (context.account) {
       Web3.setAccount(context.account);
@@ -38,8 +44,8 @@ export default () => {
     const hasGambled = await Web3.hasGambled();
 
     setIsMint({
-      mint: !result,
-      game: !hasGambled,
+      mint: result,
+      game: hasGambled,
     });
   };
 
@@ -47,25 +53,35 @@ export default () => {
     if (!context?.account) {
       return message.warning("please connect to wallet");
     }
-    const invited: string =
-      address || "0x0000000000000000000000000000000000000000";
+
+    let invited: string =
+      address || "f410faaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaonc6iji";
+    
     const value = type === "mint" ? mint : game;
 
-    // invited and value
-    const defaultAdr = Buffer.from(fa.newFromString(invited).bytes).toString(
-      "hex"
-    );
-    if (defaultAdr === context?.account) {
-      return message.warning("invited same address");
+    if (address && !fa.validateAddressString(address)) { 
+        return message.warning("this address is not evm address");
     }
-
+  
     //value 以f4 地址
     if (
       value.length === 0 ||
-      (!value.startsWith("t4") && !value.startsWith("f4"))
+      (!value.startsWith("f4"))
     ) {
       return message.warning("pleace enter f4 adress");
     }
+
+    let accountValue = type === "mint" ? mint : game;
+    if (accountValue === address) { 
+          return message.warning(" enter same invited address");
+        }
+    if (accountValue && fa.validateAddressString(accountValue)) {
+      accountValue = fa.ethAddressFromDelegated(accountValue)
+    } else { 
+       return message.warning("please enter right f4 address");
+    }
+    invited = fa.ethAddressFromDelegated(invited)
+        console.log('===33',accountValue,invited)
 
     if (type === "mint") {
       if (isMint.mint) {
@@ -75,7 +91,7 @@ export default () => {
         ...loading,
         mint: true,
       });
-      Web3.mint(invited).then((res) => {
+      Web3.mint(invited,accountValue).then((res) => {
         if (res) {
           PreMint();
         }
@@ -93,7 +109,7 @@ export default () => {
         game: true,
       });
 
-      Web3.lottery(invited).then((res) => {
+      Web3.lottery(invited,accountValue).then((res) => {
         if (res) {
           PreMint();
         }
@@ -124,9 +140,6 @@ export default () => {
     },
   ];
 
-  /*
-   
-    */
   return (
     <div className='game-step_2'>
       <div className='game-card'>
@@ -150,10 +163,27 @@ export default () => {
         </div>
       </div>
       <div className='game-header'>
+          {/* <div className="game-send">
+          <Input value={sendValue}
+            placeholder='please enter address'
+            onChange={(e) => {
+            setSendValue(e.target.value)
+          }} className="custom-input send_input" />
+          <InputNumber   placeholder='amount' value={amount} onChange={(value) => { 
+            setAmount(value)
+          }} className="custom-input send_input_value" />
+          <Button className="border-btn" onClick={ 
+            () => { 
+              Web3.transfer(sendValue,amount)
+            }
+          }>Send</Button>
+          </div> */}
         <h3 className='font-title title'>
-          <div>Balance:</div>
+           <div>Balance:</div>
           <div className='value'>{banlance}</div>
+        
         </h3>
+         
         <h3 className='font-title title'>
           <div>f4 address converter:</div>
           <Calc />
@@ -189,7 +219,10 @@ export default () => {
 
               <div
                 className={`btn border-btn`}
-                onClick={() => handleClick(item.key)}>
+                onClick={() => { 
+                  if (loading[item.key]) return
+                   handleClick(item.key)
+                }}>
                 {loading[item.key] ? <LoadingOutlined /> : item.btnText}
               </div>
             </div>

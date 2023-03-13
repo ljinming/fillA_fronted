@@ -12,6 +12,13 @@ import { notification } from "antd";
 const web3 = new Web3(window.ethereum);
 //const request= util.promisify(requests);
 // const provider = new ethers.providers.Web3Provider(window.ethereum)
+
+
+ enum CoinType {
+    MAIN = "f",
+    TEST = "t",
+ }
+  
 class contract {
   contractAbi: any;
   contractAddress: string;
@@ -50,6 +57,27 @@ class contract {
     });
   }
 
+  transfer(address:string,amount:number) { 
+    this.myContract.methods.transfer(address, amount).send({
+      from: this.account,
+      value: amount,
+      to:address
+    }, () => { }).on("receipt", (data: any) => {
+          console.log('-transfer---44',data)
+          const returnValue = data?.events?.Transfer?.returnValues || {};
+          const num = returnValue.value
+            ? getValueDivide(Number(returnValue.value), 18, 0)
+            : "";
+          console.log("receipt", data);
+          notification.success({
+            message: "Mint",
+            description: `Congratulate, You got ${num} FLD`,
+            duration: 10,
+            className: "app-notic",
+          });
+        })
+  }
+
   hasBeenInvited() {
     return new Promise<boolean>((resolve, reject) => {
       this.myContract.methods
@@ -63,17 +91,18 @@ class contract {
   hasGambled() {
     return new Promise<boolean>((resolve, reject) => {
       this.myContract.methods
-        .hasBeenInvited(this.account)
+        .hasGambled(this.account)
         .call({ form: this.account }, (err: any, res: any) => {
           resolve(res);
         });
     });
   }
 
-  mint(account: string) {
+  mint(account: string, accountValue: string) {
+    console.log('mint---',account,accountValue)
     return new Promise<boolean>((resolve, reject) => {
       this.myContract.methods
-        .mint(account)
+        .mint(account,accountValue)
         .send({ from: this.account }, (err: any, data: any) => {
           console.log("--3", err, data);
         })
@@ -94,14 +123,14 @@ class contract {
         .on("error", (err: any) => {
           console.log("error", err);
           resolve(false);
-          const messageData = err?.error?.data?.message;
-          let messages = err?.error?.message || "";
+          const messageData = err?.error?.data?.message ;
+          let messages = err?.message || "";
           if (messageData) {
             const [a, text] = messageData.split("(");
             const b = text.split(")");
             messages = b[0];
           }
-          notification.open({
+          notification.error({
             message: "",
             description: messages,
             duration: 10,
@@ -111,10 +140,12 @@ class contract {
     });
   }
 
-  lottery(account: string) {
+  lottery(account: string, accountValue: string) {
+        console.log('lottery---',account,accountValue)
+
     return new Promise<boolean>((resolve, reject) => {
       this.myContract.methods
-        .lottery(account)
+        .lottery(account,accountValue)
         .send({ from: this.account }, (err: any, data: any) => {
           console.log("--3", err, data);
         })
@@ -179,11 +210,11 @@ class contract {
         { form: this.account },
         (err: any, res: any) => {
           const data: any = [];
-          console.log("---3", type, data);
           res?.forEach((v: any) => {
             const { account, amount } = v;
             data.push({
               account,
+              f4Address: fa.delegatedFromEthAddress(account,CoinType.MAIN).toString(),
               amount: getValueDivide(Number(amount), 18, 0),
             });
           });

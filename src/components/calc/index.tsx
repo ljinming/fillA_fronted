@@ -20,7 +20,7 @@ export default () => {
   const handleChange = () => {
     //change address
     if (input && input.length > 0 && input.startsWith("0x")) {
-      const f4Address = fa.delegatedFromEthAddress(input).toString();
+      const f4Address = fa.delegatedFromEthAddress(input,CoinType.MAIN).toString();
       setShowAddress(f4Address);
     }
   };

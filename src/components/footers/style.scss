@@ -25,6 +25,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
+            column-gap: 10px;
             .link-item{
                 cursor: pointer;
                 &:hover{
@@ -36,9 +37,6 @@
         }
 
     }
-    // border-radius: 20% 20% 0px 0px;
-    // height: 432px;
-    // background: #23262F;
 }
 
 @media screen and (max-width: 800px){

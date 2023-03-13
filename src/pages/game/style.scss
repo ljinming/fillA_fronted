@@ -73,6 +73,22 @@
                 }
             }
         }
+        .game-send{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            column-gap: 10px;
+            .send_input{
+                width: 400px;
+                line-height: 36px;
+                height: 36px;
+            }
+            .send_input_value{
+                width: 120px;
+                line-height: 36px;
+                height: 36px;
+            }
+        }
         .game-header{
         text-align: center;
         margin-top: 80px;

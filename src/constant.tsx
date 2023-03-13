@@ -7,8 +7,9 @@ import airdrop from "@/assets/airdrop.png";
 import thirdrunner from "@/assets/thirdrunner.png";
 import champion from "@/assets/champion.png";
 import runnerup from "@/assets/runnerup.png";
-import { twitter } from "./svgIcons";
-export const FilaDogeContract = "0x20aa4fb4eB7e58e630ae1115059cDa54Ae8918C5";
+import { twitter,medium,community } from "./svgIcons";
+
+export const FilaDogeContract = "0x47664902c0fa1F142c3cd59F532fa3078B2F2270";
 
 export const content = [
   [
@@ -195,6 +196,7 @@ export const columns: any = [
   },
 
   { dataIndex: "account", title: "Address" },
+  { dataIndex: "f4Address", title: "F4 Address" },
   { dataIndex: "amount", title: "Reward" },
 ];
 
@@ -205,11 +207,13 @@ export const links = [
     icon: twitter,
   },
   {
-    text: "discord",
+    text: "Medium",
     link: "",
+    icon:medium,
   },
   {
     text: "Community",
-    link: "",
+    link: "https://forms.gle/kcpEEneVuvuXdxJz9",
+    icon:community
   },
 ];

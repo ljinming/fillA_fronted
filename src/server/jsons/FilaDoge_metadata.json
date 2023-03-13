@@ -16,6 +16,21 @@
 						"internalType": "string",
 						"name": "symbol",
 						"type": "string"
+					},
+					{
+						"internalType": "address",
+						"name": "donation_coop_pool",
+						"type": "address"
+					},
+					{
+						"internalType": "address",
+						"name": "future_event_pool",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "initialLotteryStartTime",
+						"type": "uint256"
 					}
 				],
 				"stateMutability": "nonpayable",
@@ -74,19 +89,13 @@
 			{
 				"inputs": [
 					{
-						"internalType": "address[]",
-						"name": "list",
-						"type": "address[]"
+						"internalType": "address",
+						"name": "receiver",
+						"type": "address"
 					}
 				],
 				"name": "airDrop1",
-				"outputs": [
-					{
-						"internalType": "uint256",
-						"name": "",
-						"type": "uint256"
-					}
-				],
+				"outputs": [],
 				"stateMutability": "nonpayable",
 				"type": "function"
 			},
@@ -179,25 +188,38 @@
 			{
 				"inputs": [
 					{
-						"components": [
-							{
-								"internalType": "address",
-								"name": "account",
-								"type": "address"
-							},
-							{
-								"internalType": "uint256",
-								"name": "amount",
-								"type": "uint256"
-							}
-						],
-						"internalType": "struct FilaDoge.ValuePair[]",
-						"name": "pairs",
-						"type": "tuple[]"
+						"internalType": "uint256",
+						"name": "newLotteryStartTime",
+						"type": "uint256"
 					}
 				],
-				"name": "burnByOwner",
-				"outputs": [],
+				"name": "changeLotteryStartTime",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "newOwner",
+						"type": "address"
+					}
+				],
+				"name": "changeOwner",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
 				"stateMutability": "nonpayable",
 				"type": "function"
 			},
@@ -454,6 +476,11 @@
 						"internalType": "address",
 						"name": "inviter",
 						"type": "address"
+					},
+					{
+						"internalType": "address",
+						"name": "gambler",
+						"type": "address"
 					}
 				],
 				"name": "lottery",
@@ -487,6 +514,19 @@
 			},
 			{
 				"inputs": [],
+				"name": "lotteryStartTime",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
 				"name": "maxSupply",
 				"outputs": [
 					{
@@ -504,6 +544,11 @@
 						"internalType": "address",
 						"name": "inviter",
 						"type": "address"
+					},
+					{
+						"internalType": "address",
+						"name": "invitee",
+						"type": "address"
 					}
 				],
 				"name": "mint",
@@ -519,31 +564,6 @@
 						"type": "uint256"
 					}
 				],
-				"stateMutability": "nonpayable",
-				"type": "function"
-			},
-			{
-				"inputs": [
-					{
-						"components": [
-							{
-								"internalType": "address",
-								"name": "account",
-								"type": "address"
-							},
-							{
-								"internalType": "uint256",
-								"name": "amount",
-								"type": "uint256"
-							}
-						],
-						"internalType": "struct FilaDoge.ValuePair[]",
-						"name": "pairs",
-						"type": "tuple[]"
-					}
-				],
-				"name": "mintByOwner",
-				"outputs": [],
 				"stateMutability": "nonpayable",
 				"type": "function"
 			},
@@ -768,11 +788,11 @@
 			]
 		},
 		"contracts/FilaDoge.sol": {
-			"keccak256": "0x488c7b239c06012632223d89527be902f494ca738beedb8a2630f2fa4dc686a3",
-			"license": "UNLICENSED",
+			"keccak256": "0x71ccdd57b06a7b412378473d57aed410a5fb4febea506b94b4e4a6ae87abc54f",
+			"license": "MIT",
 			"urls": [
-				"bzz-raw://189570d3b6781946b796cea2a293f2d2c5beb4600ff2efe6aef5c92c6a1159f3",
-				"dweb:/ipfs/QmcSNDRRHeeuCoen4Woi4pVZTQ9FNxqRPTzvojKzLntJ5Q"
+				"bzz-raw://2819ef1544fb2d4fa1bf52b197161768c61f0e85bb7d08fd7fc59b04232c58f5",
+				"dweb:/ipfs/QmYvZ8EqKwjkZvC4RH1AJkaiNSmi4EP4uxRLRWRByJoFNH"
 			]
 		}
 	},

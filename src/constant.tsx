@@ -7,6 +7,7 @@ import airdrop from "@/assets/airdrop.png";
 import thirdrunner from "@/assets/thirdrunner.png";
 import champion from "@/assets/champion.png";
 import runnerup from "@/assets/runnerup.png";
+import { twitter } from "./svgIcons";
 export const FilaDogeContract = "0x20aa4fb4eB7e58e630ae1115059cDa54Ae8918C5";
 
 export const content = [
@@ -125,7 +126,7 @@ export const content_text = [
     text: (
       <div>
         <div>Reward top 600 FIL holders1 with 6% of the total supply!</div>
-        <div>Reward top 400 FIL holders with 4% of the total supply!</div>
+        <div>Reward top 400 ETH holders with 4% of the total supply!</div>
       </div>
     ),
     details: [
@@ -201,6 +202,7 @@ export const links = [
   {
     text: "twitter",
     link: "https://twitter.com/filadoge",
+    icon: twitter,
   },
   {
     text: "discord",

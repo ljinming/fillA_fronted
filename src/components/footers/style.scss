@@ -20,7 +20,19 @@
             margin: 0px;
             font-family: PingFangSC-Semibold, PingFang SC;
             font-weight: 600;
-
+        }
+        .link{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            .link-item{
+                cursor: pointer;
+                &:hover{
+                    svg{
+                        fill: #FFA4E0;
+                    }
+                }
+            }
         }
 
     }

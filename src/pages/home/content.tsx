@@ -101,9 +101,9 @@ export default () => {
                     <div>{item.text}</div>
                     {item.details && (
                       <div className='detail'>
-                        {item.details.map((detail: string) => {
+                        {item.details.map((detail: string, index: number) => {
                           return (
-                            <div>
+                            <div key={index}>
                               <span className='detail-icon'>*</span>
                               <span>{detail}</span>
                             </div>

@@ -9,9 +9,9 @@ import { access, fstat } from 'fs';
 
 let network = 'Filecoin Hyperspace'
 
-const provider = new ethers.providers.Web3Provider(window.ethereum);
-
-const signer = provider.getSigner()
+ const provider = new ethers.providers.Web3Provider(window.ethereum);
+//const provider = ((window.ethereum != null) ? new ethers.providers.Web3Provider(window.ethereum) : ethers.providers.getDefaultProvider());
+ const signer = provider?.getSigner()
 class contract {
      contractAbi: any;
     contractAddress: string;
@@ -19,7 +19,9 @@ class contract {
     account:string
  constructor() {
      this.contractAbi = JSON.parse(JSON.stringify(FilaDoge.output.abi));
-    this.contractAddress = FilaDogeContract;
+     this.contractAddress = FilaDogeContract;
+    
+
      this.myContract = new ethers.Contract(this.contractAddress, this.contractAbi,signer);
      this.account = '';
  }
@@ -27,14 +29,13 @@ class contract {
     async getBalance(account: string):Promise<number|string> {
         this.account = account;
         const result = await this.myContract.balanceOf(account);
-        const res = getValueDivide(Number(result), 18,0)
+        const res = getValueDivide(Number(result), 18, 0);
         return res
     }
 
   
     async PreM(account:string) { 
         const result = await this.myContract.callStatic.hasBeenInvited(account).then((res:any) => { }).catch();
-        console.log('===3', result)
         return result
     }
 

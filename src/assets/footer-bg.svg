@@ -7,15 +7,15 @@
             <feGaussianBlur stdDeviation="106.057159" in="SourceGraphic"></feGaussianBlur>
         </filter>
     </defs>
-    <g id="页面-1" stroke="none" strokeWidth="1" fill="none" fill-rule="evenodd">
+    <g id="页面-1" stroke="none" strokeWidth="1" fill="none" fillRule="evenodd">
         <g id="FilaDoge-切图" transform="translate(-44.000000, -2890.000000)">
             <g id="bg" transform="translate(44.000000, 2890.000000)">
-                <path d="M0,86.465651 C0,74.4862019 10.1168,64.0506056 24.5138,61.3403527 C237.671,21.2134694 459.779,0 688,0 C916.221,0 1138.33,21.2134694 1351.49,61.3404338 C1365.88,64.0506056 1376,74.4862019 1376,86.465651 L1376,432 L0,432 L0,86.465651 Z" id="background" fill="#23262F" fill-rule="nonzero"></path>
+                <path d="M0,86.465651 C0,74.4862019 10.1168,64.0506056 24.5138,61.3403527 C237.671,21.2134694 459.779,0 688,0 C916.221,0 1138.33,21.2134694 1351.49,61.3404338 C1365.88,64.0506056 1376,74.4862019 1376,86.465651 L1376,432 L0,432 L0,86.465651 Z" id="background" fill="#23262F" fillRule="nonzero"></path>
                 <mask id="mask-2" fill="white">
                     <use xlink:href="#path-1"></use>
                 </mask>
-                <use id="mask" fill="#23262F" fill-rule="nonzero" opacity="0" style="mix-blend-mode: overlay;" xlink:href="#path-1"></use>
-                <rect id="gradient" fill="" fill-rule="nonzero" opacity="0.5" style="mix-blend-mode: overlay;" filter="url(#filter-3)" mask="url(#mask-2)" x="276" y="-194" width="801" height="815" rx="400.5"></rect>
+                <use id="mask" fill="#23262F" fillRule="nonzero" opacity="0" style="mix-blend-mode: overlay;" xlink:href="#path-1"></use>
+                <rect id="gradient" fill="" fillRule="nonzero" opacity="0.5" style="mix-blend-mode: overlay;" filter="url(#filter-3)" mask="url(#mask-2)" x="276" y="-194" width="801" height="815" rx="400.5"></rect>
             </g>
         </g>
     </g>

@@ -38,6 +38,18 @@ class contract {
     this.account = account;
   }
 
+  async getBalance(account: string): Promise<number | string> {
+    this.account = account;
+    return new Promise<number | string>((resolve, reject) => {
+      this.myContract.methods
+        .balanceOf(account)
+        .call({ form: this.account }, (err: any, res: any) => {
+          const number = getValueDivide(Number(res), 18, 0);
+          resolve(number);
+        });
+    });
+  }
+
   hasBeenInvited() {
     return new Promise<boolean>((resolve, reject) => {
       this.myContract.methods
@@ -74,7 +86,7 @@ class contract {
           console.log("receipt", data);
           notification.success({
             message: "Mint",
-            description: `Congratulate, You got ${num} FilaDoge`,
+            description: `Congratulate, You got ${num} FLD`,
             duration: 10,
             className: "app-notic",
           });
@@ -115,7 +127,7 @@ class contract {
           console.log("receipt", data);
           notification.success({
             message: "lottery",
-            description: `Congratulate, You got ${num} FilaDoge`,
+            description: `Congratulate, You got ${num} FLD`,
             duration: 10,
             className: "app-notic",
           });
@@ -153,8 +165,7 @@ class contract {
         (err: any, res: any) => {
           const number =
             type === "participants" ? res : getValueDivide(Number(res), 18, 0);
-          console.log("=rank_mint==3", type, res, number);
-
+          console.log("=rank_mint==3", type, menthod, res, number);
           resolve(number);
         }
       );
@@ -169,7 +180,7 @@ class contract {
         (err: any, res: any) => {
           const data: any = [];
           console.log("---3", type, data);
-          res.forEach((v: any) => {
+          res?.forEach((v: any) => {
             const { account, amount } = v;
             data.push({
               account,

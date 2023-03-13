@@ -3,9 +3,10 @@ import Calc from "@/components/calc";
 import { Input, message } from "antd";
 import { MyContext } from "@/pages/content";
 import { useParams } from "react-router-dom";
-import Contract from "@/server/Contract";
+//import Contract from "@/server/Contract";
 import { useState, useContext, useEffect, useRef } from "react";
 import Web3 from "@/server/Web3";
+import fa from "@glif/filecoin-address";
 import { LoadingOutlined } from "@ant-design/icons";
 
 export default () => {
@@ -30,13 +31,14 @@ export default () => {
   }, [context?.account]);
 
   const PreMint = async () => {
-    Contract.getBalance(context.account).then((res: number | string) => {
+    Web3.getBalance(context.account).then((res: number | string) => {
       setBanlance(res);
     });
     const result = await Web3.hasBeenInvited();
     const hasGambled = await Web3.hasGambled();
+
     setIsMint({
-      mint: result,
+      mint: !result,
       game: !hasGambled,
     });
   };
@@ -45,13 +47,26 @@ export default () => {
     if (!context?.account) {
       return message.warning("please connect to wallet");
     }
+    const invited: string =
+      address || "0x0000000000000000000000000000000000000000";
     const value = type === "mint" ? mint : game;
+
+    // invited and value
+    const defaultAdr = Buffer.from(fa.newFromString(invited).bytes).toString(
+      "hex"
+    );
+    if (defaultAdr === context?.account) {
+      return message.warning("invited same address");
+    }
+
+    //value 以f4 地址
     if (
       value.length === 0 ||
       (!value.startsWith("t4") && !value.startsWith("f4"))
     ) {
       return message.warning("pleace enter f4 adress");
     }
+
     if (type === "mint") {
       if (isMint.mint) {
         return message.warning("minted");
@@ -60,7 +75,7 @@ export default () => {
         ...loading,
         mint: true,
       });
-      Web3.mint("0x0000000000000000000000000000000000000000").then((res) => {
+      Web3.mint(invited).then((res) => {
         if (res) {
           PreMint();
         }
@@ -77,8 +92,7 @@ export default () => {
         ...loading,
         game: true,
       });
-      const invited: string =
-        address || "0x0000000000000000000000000000000000000000";
+
       Web3.lottery(invited).then((res) => {
         if (res) {
           PreMint();

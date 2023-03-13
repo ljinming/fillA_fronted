@@ -3,12 +3,17 @@ import Logo from "@/assets/logo.svg";
 import Twitter from "@/assets/twitter.svg";
 import { useParams } from "react-router-dom";
 import copy from "copy-to-clipboard";
+import { MyContext } from "@/pages/content";
 import { message } from "antd";
+import { useContext } from "react";
 
 export default () => {
-  let { address } = useParams();
-  const shareUrl = `${window.location.href}share${address ? "/address" : ""}`;
-  const shareTitle = "Fila Doge";
+  const context = useContext<any>(MyContext);
+  const shareUrl = `${window.location.href}${
+    context?.account ? `/${context?.account}` : ""
+  }`;
+  const shareTitle =
+    "Welcome to @FilaDoge , win free $FLD tokens through game and lottery";
   const shareTwiter = `https://twitter.com/intent/tweet?text=${shareTitle}&url=${encodeURIComponent(
     shareUrl
   )}&via=FilaDoge`;

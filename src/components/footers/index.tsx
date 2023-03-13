@@ -15,7 +15,18 @@ export default () => {
         </div>
         <div className='link'>
           {links.map((item) => {
-            return <div key={item.text}>{item.text}</div>;
+            return (
+              <div
+                className='link-item'
+                key={item.text}
+                onClick={() => {
+                  if (item.link) {
+                    window.open(item.link);
+                  }
+                }}>
+                {item.icon}
+              </div>
+            );
           })}
         </div>
       </div>

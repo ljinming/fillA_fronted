@@ -6,12 +6,15 @@ import path from "path";    //path引入可能报错可以使用 import {resolve
 import pxtovw from 'postcss-px-to-viewport'
 // https://vitejs.dev/config/
 export default defineConfig({
+  build: {
+    outDir:'build'
+  },
   plugins: [react()],
      optimizeDeps: {
         esbuildOptions: {
             // Node.js global to browser globalThis
             define: {
-                global: 'globalThis'
+                global: 'window'
             },
             // Enable esbuild polyfill plugins
             plugins: [
@@ -42,5 +45,6 @@ export default defineConfig({
     '@': path.resolve(__dirname, './src/'),
     },
   },
+
 })
 

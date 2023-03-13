@@ -4,9 +4,14 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import App from "@/pages";
 import "./index.scss";
-import { Buffer } from "buffer";
+import * as buffer from "buffer";
 
-window.Buffer = window.Buffer || Buffer;
+if (typeof (window as any).global === "undefined") {
+  (window as any).global = window;
+}
+if (typeof (window as any).Buffer === "undefined") {
+  (window as any).Buffer = buffer.Buffer;
+}
 
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
   <React.StrictMode>

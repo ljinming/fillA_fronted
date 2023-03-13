@@ -21,8 +21,8 @@
             <feGaussianBlur stdDeviation="84.9142838" in="SourceGraphic"></feGaussianBlur>
         </filter>
     </defs>
-    <g id="页面-1" stroke="none" strokeWidth="1" fill="none" fill-rule="evenodd">
-        <g id="FilaDoge-切图" transform="translate(0.000000, 3.000000)" fill-rule="nonzero">
+    <g id="页面-1" stroke="none" strokeWidth="1" fill="none" fillRule="evenodd">
+        <g id="FilaDoge-切图" transform="translate(0.000000, 3.000000)" fillRule="nonzero">
             <g id="编组-2" transform="translate(-124.000000, -3.000000)">
                 <path d="M496,205 C496,264.094 448.094,312 389,312 C329.9055,312 282,264.094 282,205 C282,145.9055 329.9055,98 389,98 C448.094,98 496,145.9055 496,205 Z" id="gradient-2" fill="#D6FFDD" filter="url(#filter-1)"></path>
                 <path d="M597,83 C597,128.84 559.84,166 514,166 C468.1604,166 431,128.84 431,83 C431,37.1604 468.1604,0 514,0 C559.84,0 597,37.1604 597,83 Z" id="gradient-1" fill="#FFA4E0" opacity="0.300000012" filter="url(#filter-2)"></path>

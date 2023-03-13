@@ -15,8 +15,8 @@
             <stop stop-color="#FF965C" offset="100%"></stop>
         </linearGradient>
     </defs>
-    <g id="页面-1" stroke="none" strokeWidth="1" fill="none" fill-rule="evenodd">
-        <g id="FilaDoge-切图" transform="translate(-59.000000, -137.000000)" fill-rule="nonzero">
+    <g id="页面-1" stroke="none" strokeWidth="1" fill="none" fillRule="evenodd">
+        <g id="FilaDoge-切图" transform="translate(-59.000000, -137.000000)" fillRule="nonzero">
             <g id="编组-5" transform="translate(59.000000, 137.000000)">
                 <path d="M20,317 C20,322.5228 15.5228,327 10,327 C4.47715,327 0,322.5228 0,317 C0,311.47715 4.47715,307 10,307 C15.5228,307 20,311.47715 20,317 Z" id="gradient-dot-03" fill="url(#linearGradient-1)"></path>
                 <path d="M924,18 C924,27.9411 915.9411,36 906,36 C896.05887,36 888,27.9411 888,18 C888,8.05887 896.05887,0 906,0 C915.9411,0 924,8.05887 924,18 Z" id="gradient-dot-04" fill="url(#linearGradient-2)"></path>

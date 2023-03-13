@@ -1,12 +1,9 @@
 /** @format */
 import Calc from "@/components/calc";
-import { Button, Input, message } from "antd";
+import {  Input, message } from "antd";
 import { MyContext } from "@/pages/content";
 import { useParams } from "react-router-dom";
-import { InputNumber } from 'antd';
-import { BigNumber, utils } from "ethers";
-
-//import Contract from "@/server/Contract";
+import Tranfe from '@/components/tranfe'
 import { useState, useContext, useEffect, useRef } from "react";
 import Web3 from "@/server/Web3";
 import fa from "@glif/filecoin-address";
@@ -17,8 +14,7 @@ export default () => {
   const [banlance, setBanlance] = useState<string | number>(0);
   const [mint, setMint] = useState("");
   const [game, setGame] = useState("");
-  const [sendValue, setSendValue] = useState("");
-  const [amount,setAmount] = useState<number|any>();
+
   const [loading, setLoading] = useState<Record<string, boolean>>({
     mint: false,
     game: false,
@@ -32,35 +28,38 @@ export default () => {
   useEffect(() => {
     if (context.account) {
       Web3.setAccount(context.account);
-      PreMint();
+      getbBanlance(context.account)
+      PreMint(context.account);
     }
   }, [context?.account]);
 
-  const PreMint = async () => {
-    Web3.getBalance(context.account).then((res: number | string) => {
+  const getbBanlance=(account:string)=>{ 
+      Web3.getBalance(account).then((res: number | string) => {
       setBanlance(res);
     });
-    const result = await Web3.hasBeenInvited();
-    const hasGambled = await Web3.hasGambled();
+  }
 
+  const PreMint = async (account:string) => {
+    const result = await Web3.hasBeenInvited(account);
+    const hasGambled = await Web3.hasGambled(account);
     setIsMint({
       mint: result,
       game: hasGambled,
     });
   };
 
-  const handleClick = (type: string) => {
+  const handleClick = async (type: string) => {
     if (!context?.account) {
       return message.warning("please connect to wallet");
     }
 
     let invited: string =
       address || "f410faaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaonc6iji";
-    
+    //0x0000000000000000000000000000000000000000
     const value = type === "mint" ? mint : game;
 
     if (address && !fa.validateAddressString(address)) { 
-        return message.warning("this address is not evm address");
+        return message.warning("invadid invite code");
     }
   
     //value 以f4 地址
@@ -73,16 +72,22 @@ export default () => {
 
     let accountValue = type === "mint" ? mint : game;
     if (accountValue === address) { 
-          return message.warning(" enter same invited address");
-        }
+          return message.warning("same invited address");
+    }
     if (accountValue && fa.validateAddressString(accountValue)) {
       accountValue = fa.ethAddressFromDelegated(accountValue)
     } else { 
        return message.warning("please enter right f4 address");
     }
-    invited = fa.ethAddressFromDelegated(invited)
-        console.log('===33',accountValue,invited)
 
+    if (accountValue === '0x0000000000000000000000000000000000000000') { 
+      return message.warning('please enter right address')
+    }
+
+    invited = fa.ethAddressFromDelegated(invited)
+
+    await PreMint(accountValue)
+    
     if (type === "mint") {
       if (isMint.mint) {
         return message.warning("minted");
@@ -92,9 +97,6 @@ export default () => {
         mint: true,
       });
       Web3.mint(invited,accountValue).then((res) => {
-        if (res) {
-          PreMint();
-        }
         setLoading({
           ...loading,
           mint: false,
@@ -111,7 +113,7 @@ export default () => {
 
       Web3.lottery(invited,accountValue).then((res) => {
         if (res) {
-          PreMint();
+          getbBanlance(context.account)
         }
         setLoading({
           ...loading,
@@ -163,25 +165,11 @@ export default () => {
         </div>
       </div>
       <div className='game-header'>
-          {/* <div className="game-send">
-          <Input value={sendValue}
-            placeholder='please enter address'
-            onChange={(e) => {
-            setSendValue(e.target.value)
-          }} className="custom-input send_input" />
-          <InputNumber   placeholder='amount' value={amount} onChange={(value) => { 
-            setAmount(value)
-          }} className="custom-input send_input_value" />
-          <Button className="border-btn" onClick={ 
-            () => { 
-              Web3.transfer(sendValue,amount)
-            }
-          }>Send</Button>
-          </div> */}
+      
         <h3 className='font-title title'>
            <div>Balance:</div>
           <div className='value'>{banlance}</div>
-        
+          <Tranfe />
         </h3>
          
         <h3 className='font-title title'>

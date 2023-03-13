@@ -3,7 +3,7 @@
 import FilaDoge from "./jsons/FilaDoge_metadata.json";
 import { FilaDogeContract } from "@/constant";
 import fa from "@glif/filecoin-address";
-import { getValueDivide } from "@/utils";
+import { getValueDivide ,getValueMultiplied} from "@/utils";
 import Web3 from "web3";
 import { notification } from "antd";
 
@@ -57,10 +57,12 @@ class contract {
     });
   }
 
-  transfer(address:string,amount:number) { 
-    this.myContract.methods.transfer(address, amount).send({
+  transfer(address: string, amount: number) { 
+    const value = getValueMultiplied(Number(amount));
+    console.log('---436',address,value);
+    this.myContract.methods.transfer(address, value).send({
       from: this.account,
-      value: amount,
+      value: value,
       to:address
     }, () => { }).on("receipt", (data: any) => {
           console.log('-transfer---44',data)
@@ -78,20 +80,20 @@ class contract {
         })
   }
 
-  hasBeenInvited() {
+  hasBeenInvited(account:string) {
     return new Promise<boolean>((resolve, reject) => {
       this.myContract.methods
-        .hasBeenInvited(this.account)
+        .hasBeenInvited(account)
         .call({ form: this.account }, (err: any, res: any) => {
           resolve(res);
         });
     });
   }
 
-  hasGambled() {
+  hasGambled(account:string) {
     return new Promise<boolean>((resolve, reject) => {
       this.myContract.methods
-        .hasGambled(this.account)
+        .hasGambled(account)
         .call({ form: this.account }, (err: any, res: any) => {
           resolve(res);
         });
@@ -108,7 +110,7 @@ class contract {
         })
         .on("receipt", (data: any) => {
           resolve(true);
-          const returnValue = data?.events?.Transfer?.returnValues || {};
+          const returnValue = data?.events?.Transfer[1]?.returnValues || {};
           const num = returnValue.value
             ? getValueDivide(Number(returnValue.value), 18, 0)
             : "";
@@ -151,7 +153,7 @@ class contract {
         })
         .on("receipt", (data: any) => {
           resolve(true);
-          const returnValue = data?.events?.Transfer?.returnValues || {};
+          const returnValue = data?.events?.Transfer[1]?.returnValues || {};
           const num = returnValue.value
             ? getValueDivide(Number(returnValue.value), 18, 0)
             : "";
@@ -212,11 +214,14 @@ class contract {
           const data: any = [];
           res?.forEach((v: any) => {
             const { account, amount } = v;
+            if (account !== '0x0000000000000000000000000000000000000000') { 
             data.push({
               account,
               f4Address: fa.delegatedFromEthAddress(account,CoinType.MAIN).toString(),
               amount: getValueDivide(Number(amount), 18, 0),
             });
+            }
+         
           });
           data.sort((a: any, b: any) => {
             return Number(a.aamount) - Number(b.aamount);

@@ -29,7 +29,7 @@ export default () => {
         <span className='value'>{mint}</span>
       </div>
       <div className='card-item'>
-        <h3 className='title'> $$$ FLD claimedt</h3>
+        <h3 className='title'> $$$ FLD claimed</h3>
         <span className='value'>{claimed}</span>
       </div>
       <div className='card-item'>

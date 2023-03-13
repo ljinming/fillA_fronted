@@ -5,6 +5,7 @@ import { Button } from "antd";
 import fa from "@glif/filecoin-address";
 import copy from "copy-to-clipboard";
 import { calcSvg, copySvg } from "@/svgIcons";
+import web3 from "web3";
 import "./style.scss";
 
 export default () => {
@@ -19,9 +20,15 @@ export default () => {
 
   const handleChange = () => {
     //change address
+    
     if (input && input.length > 0 && input.startsWith("0x")) {
+      if (!web3.utils.isAddress(input)) { 
+        return message.warning('please enter right address')
+    }
       const f4Address = fa.delegatedFromEthAddress(input,CoinType.MAIN).toString();
       setShowAddress(f4Address);
+    } else {
+      return message.warning('please enter right address')
     }
   };
   return (
@@ -60,7 +67,7 @@ export default () => {
         </div>
         <div className='calc-box box'>
           <Button className='connect-btn btn' onClick={handleChange}>
-            Change
+            Convert
           </Button>
         </div>
       </Modal>

@@ -1,6 +1,6 @@
 /** @format */
 import Calc from "@/components/calc";
-import {  Input, message } from "antd";
+import {  Input, notification } from "antd";
 import { MyContext } from "@/pages/content";
 import { useParams } from "react-router-dom";
 import Tranfe from '@/components/tranfe'
@@ -42,15 +42,21 @@ export default () => {
   const PreMint = async (account:string) => {
     const result = await Web3.hasBeenInvited(account);
     const hasGambled = await Web3.hasGambled(account);
-    setIsMint({
-      mint: result,
-      game: hasGambled,
-    });
+     const PreMint = {  mint: result,
+      game: hasGambled,}
+    setIsMint(PreMint);
+   
+    return PreMint
   };
 
   const handleClick = async (type: string) => {
     if (!context?.account) {
-      return message.warning("please connect to wallet");
+      return notification.warning({
+        message: "",
+        description: 'Please connect to wallet!',
+        duration: 10,
+        className: "app-notic",
+      })
     }
 
     let invited: string =
@@ -58,8 +64,13 @@ export default () => {
     //0x0000000000000000000000000000000000000000
     const value = type === "mint" ? mint : game;
 
-    if (address && !fa.validateAddressString(address)) { 
-        return message.warning("invadid invite code");
+    if (address && !fa.validateAddressString(address)) {
+      return notification.warning({
+        message: "",
+        description: 'Invalid invite code!',
+        duration: 10,
+        className: "app-notic",
+      })
     }
   
     //value 以f4 地址
@@ -67,30 +78,56 @@ export default () => {
       value.length === 0 ||
       (!value.startsWith("f4"))
     ) {
-      return message.warning("pleace enter f4 adress");
+      return notification.warning({
+        message: "",
+        description: `It doesn't smell like an f4 address!`,
+        duration: 10,
+        className: "app-notic",
+      })
     }
 
     let accountValue = type === "mint" ? mint : game;
-    if (accountValue === address) { 
-          return message.warning("same invited address");
+    if (accountValue === address) {
+      return notification.warning({
+        message: "",
+        description: 'Self-invite is not supported, please ask other doggies to invite you!',
+        duration: 10,
+        className: "app-notic",
+      })
     }
     if (accountValue && fa.validateAddressString(accountValue)) {
       accountValue = fa.ethAddressFromDelegated(accountValue)
-    } else { 
-       return message.warning("please enter right f4 address");
+    } else {
+      return notification.warning({
+        message: "",
+        description: `It doesn't smell like an f4 address!`,
+        duration: 10,
+        className: "app-notic",
+      })
     }
 
-    if (accountValue === '0x0000000000000000000000000000000000000000') { 
-      return message.warning('please enter right address')
+    if (accountValue === '0x0000000000000000000000000000000000000000') {
+      return notification.warning({
+        message: "",
+        description:  `It doesn't smell like an f4 address!`,
+        duration: 10,
+        className: "app-notic",
+      })
     }
 
     invited = fa.ethAddressFromDelegated(invited)
 
-    await PreMint(accountValue)
+    const preMint = await PreMint(accountValue)
     
+    const showMint = preMint || isMint;
     if (type === "mint") {
-      if (isMint.mint) {
-        return message.warning("minted");
+      if (showMint.mint) {
+         return notification.warning({
+        message: "",
+        description: 'Already claimed, leave other doggies a chance.',
+        duration: 10,
+        className: "app-notic",
+      })
       }
       setLoading({
         ...loading,
@@ -103,8 +140,13 @@ export default () => {
         });
       });
     } else if (type === "game") {
-      if (isMint.game) {
-        return message.warning("minted");
+      if (showMint.game) {
+        return notification.warning({
+        message: "",
+        description: 'Already gamed, leave other doggies a chance.',
+        duration: 10,
+        className: "app-notic",
+        })
       }
       setLoading({
         ...loading,
@@ -200,7 +242,7 @@ export default () => {
                         setGame(e.target.value);
                       }
                     }}
-                    placeholder='pleace enter f4 adress'
+                    placeholder='Please feed me with tasty f4 address!'
                   />
                 </div>
               </div>

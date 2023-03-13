@@ -3,8 +3,7 @@ import { ethers } from 'ethers';
 import { FilaDogeContract } from '@/constant'
 import fa from "@glif/filecoin-address";
 import { getValueDivide } from '@/utils'
-import { message } from 'antd';
-import { access, fstat } from 'fs';
+
 
 
 let network = 'Filecoin Hyperspace'

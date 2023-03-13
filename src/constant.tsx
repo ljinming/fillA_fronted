@@ -181,7 +181,7 @@ export const columns: any = [
   {
     dataIndex: "",
     align: "center",
-    title: "Rank",
+    title: "Ranking",
     render: (text: any, Record: any, index: number) => {
       const url =
         index === 0
@@ -197,7 +197,7 @@ export const columns: any = [
 
   { dataIndex: "account", title: "Address" },
   { dataIndex: "f4Address", title: "F4 Address" },
-  { dataIndex: "amount", title: "Reward" },
+  { dataIndex: "amount", title: "Rewards" },
 ];
 
 export const links = [

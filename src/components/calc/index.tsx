@@ -1,5 +1,5 @@
 /** @format */
-import { Modal, Input, message } from "antd";
+import { Modal, Input,notification } from "antd";
 import { useState } from "react";
 import { Button } from "antd";
 import fa from "@glif/filecoin-address";
@@ -23,12 +23,22 @@ export default () => {
     
     if (input && input.length > 0 && input.startsWith("0x")) {
       if (!web3.utils.isAddress(input)) { 
-        return message.warning('please enter right address')
+         notification.success({
+                message: "",
+                description: `It doesn't smell like a 0x address!`,
+                duration: 10,
+                className: "app-notic",
+              })
     }
       const f4Address = fa.delegatedFromEthAddress(input,CoinType.MAIN).toString();
       setShowAddress(f4Address);
     } else {
-      return message.warning('please enter right address')
+        notification.success({
+                message: "",
+                description: `It doesn't smell like an f4 address!`,
+                duration: 10,
+                className: "app-notic",
+              })
     }
   };
   return (
@@ -40,12 +50,17 @@ export default () => {
         title='f4 Address Converter'
         open={show}
         footer={null}
-        onCancel={() => setShow(false)}>
+        onCancel={() => { 
+          setShow(false);
+          setInput('');
+          setShowAddress('');
+
+        }}>
         <div className='calc-box'>
           <span className='Address'>0x address:</span>
           <Input
             onChange={(e: any) => setInput(e.target.value)}
-            placeholder='Please fill in 0x address'
+            placeholder='Please enter the 0x address'
           />
         </div>
 
@@ -57,8 +72,14 @@ export default () => {
               className='copy-icon'
               onClick={() => {
                 if (showAddress.length > 0) {
-                  copy(showAddress);
-                  message.success("address copied!");
+                copy(showAddress);
+                notification.success({
+                message: "",
+                description: 'f4 address copied!',
+                duration: 10,
+                className: "app-notic",
+              })
+                 // message.success("f4 address copied!");
                 }
               }}>
               {copySvg}

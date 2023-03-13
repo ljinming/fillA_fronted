@@ -59,7 +59,6 @@ class contract {
 
   transfer(address: string, amount: number) { 
     const value = getValueMultiplied(Number(amount));
-    console.log('---436',address,value);
     this.myContract.methods.transfer(address, value).send({
       from: this.account,
       value: value,
@@ -110,14 +109,14 @@ class contract {
         })
         .on("receipt", (data: any) => {
           resolve(true);
-          const returnValue = data?.events?.Transfer[1]?.returnValues || {};
+          const returnValue =  Array.isArray(data?.events?.Transfer)? data?.events?.Transfer[1]?.returnValues || {} :data?.events?.Transfer?.returnValues;
           const num = returnValue.value
             ? getValueDivide(Number(returnValue.value), 18, 0)
             : "";
           console.log("receipt", data);
           notification.success({
             message: "Mint",
-            description: `Congratulate, You got ${num} FLD`,
+            description: `Congratulations, you claimed ${num} FLD!`,
             duration: 10,
             className: "app-notic",
           });
@@ -126,13 +125,14 @@ class contract {
           console.log("error", err);
           resolve(false);
           const messageData = err?.error?.data?.message ;
-          let messages = err?.message || "";
+          let messages = 'Fox has rejected doggy’s transaction!'
+          
           if (messageData) {
             const [a, text] = messageData.split("(");
             const b = text.split(")");
             messages = b[0];
           }
-          notification.error({
+          notification.warning({
             message: "",
             description: messages,
             duration: 10,
@@ -153,14 +153,14 @@ class contract {
         })
         .on("receipt", (data: any) => {
           resolve(true);
-          const returnValue = data?.events?.Transfer[1]?.returnValues || {};
+          const returnValue =  Array.isArray(data?.events?.Transfer)? data?.events?.Transfer[1]?.returnValues || {} :data?.events?.Transfer?.returnValues;
           const num = returnValue.value
             ? getValueDivide(Number(returnValue.value), 18, 0)
             : "";
           console.log("receipt", data);
           notification.success({
             message: "lottery",
-            description: `Congratulate, You got ${num} FLD`,
+            description: `Congratulations, you won ${num} FLD!`,
             duration: 10,
             className: "app-notic",
           });
@@ -169,13 +169,13 @@ class contract {
           resolve(false);
           console.log("error", err);
           const messageData = err?.error?.data?.message;
-          let messages = err?.error?.message || "";
+         let messages = 'Fox has rejected doggy’s transaction!'
           if (messageData) {
             const [a, text] = messageData.split("(");
             const b = text.split(")");
             messages = b[0];
           }
-          notification.open({
+          notification.warning({
             message: "",
             description: messages,
             duration: 10,

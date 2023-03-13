@@ -25,15 +25,15 @@ export default () => {
   return (
     <div className='rank-card'>
       <div className='card-item'>
-        <h3 className='title'>$$$ FLD for the next Mint</h3>
+        <h3 className='title'>$ FLD for the next Mint</h3>
         <span className='value'>{mint}</span>
       </div>
       <div className='card-item'>
-        <h3 className='title'> $$$ FLD claimed</h3>
+        <h3 className='title'>$ FLD claimed</h3>
         <span className='value'>{claimed}</span>
       </div>
       <div className='card-item'>
-        <h3 className='title'> by ### participants</h3>
+        <h3 className='title'>Addresses participated</h3>
         <span className='value'>{participants}</span>
       </div>
     </div>

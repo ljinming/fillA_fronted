@@ -1,12 +1,11 @@
 /** @format */
 import Logo from "@/assets/logo.svg";
 import Twitter from "@/assets/twitter.svg";
-import { useParams } from "react-router-dom";
 import copy from "copy-to-clipboard";
 import { MyContext } from "@/pages/content";
 import fa from "@glif/filecoin-address";
 
-import { message } from "antd";
+import { notification } from "antd";
 import { useContext } from "react";
 
 enum CoinType {
@@ -21,14 +20,19 @@ export default () => {
     context?.account ? `/${f4Address}` : ""
   }`;
   const shareTitle =
-    "Welcome to @FilaDoge , win free $FLD tokens through game and lottery";
+    "Who's luckier? Win free $FLD tokens through game and lottery";
   const shareTwiter = `https://twitter.com/intent/tweet?text=${shareTitle}&url=${encodeURIComponent(
     shareUrl
   )}&via=FilaDoge`;
 
   const copyShareLink = () => {
     copy(shareUrl);
-    message.success("Link copied!");
+     notification.warning({
+        message: "",
+        description: 'Link copied!',
+        duration: 10,
+        className: "app-notic",
+      })
   };
   return (
     <div className='card step_3'>

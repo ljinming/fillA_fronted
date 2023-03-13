@@ -20,10 +20,11 @@ export default () => {
     context?.account ? `/${f4Address}` : ""
   }`;
   const shareTitle =
-    "Who's luckier? Win free $FLD tokens through game and lottery";
-  const shareTwiter = `https://twitter.com/intent/tweet?text=${shareTitle}&url=${encodeURIComponent(
+    `Who's luckier? Win free $FLD tokens through @FilaDoge game and lottery`;
+  const url= `&url=${encodeURIComponent(
     shareUrl
-  )}&via=FilaDoge`;
+  )}`
+  const shareTwiter = `https://twitter.com/intent/tweet?text=${encodeURIComponent(shareTitle)}${url}&hashtags=$FLD&via=FilaDoge`;
 
   const copyShareLink = () => {
     copy(shareUrl);

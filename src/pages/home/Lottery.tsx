@@ -7,9 +7,11 @@ import { columns } from "@/constant";
 
 export default () => {
   const [data, setData] = useState([]);
+  const [current,setCurrent] = useState(1);
   useEffect(() => {
     load();
   }, []);
+  
 
   const load = () => {
     FilaContract.rank_Table("lottery").then((res: any) => {
@@ -19,8 +21,22 @@ export default () => {
 
   return (
     <Table
-      pagination={false}
+      pagination={
+          {
+              position: ["bottomRight"],
+              current: current,
+              showQuickJumper: false,
+              pageSize: 5,
+              showSizeChanger: false,
+              total:data.length,
+              onChange: (cur) => {
+                setCurrent(cur)
+              },
+            }
+         
+      }
+     
       columns={columns}
-      dataSource={data.length > 10 ? data.slice(0, 10) : data}></Table>
+      dataSource={data.length > 50 ? data.slice(0, 50) : data}></Table>
   );
 };

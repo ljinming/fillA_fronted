@@ -216,8 +216,9 @@
             .rank-list{
                 position: absolute;
                 padding: 20px 50px;
+                max-height: 500px;
                 overflow: auto;
-                min-height: 500px;
+                min-height: 400px;
                 width: 100%;
                 top: 110%;
                 left: 50%;
@@ -336,7 +337,7 @@
         .home-rank {
             .content {
              .rank-list{
-            max-height: 360px;
+             max-height: 360px;
            }
            }
         }

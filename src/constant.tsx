@@ -7,7 +7,8 @@ import airdrop from "@/assets/airdrop.png";
 import thirdrunner from "@/assets/thirdrunner.png";
 import champion from "@/assets/champion.png";
 import runnerup from "@/assets/runnerup.png";
-import { twitter,medium,community } from "./svgIcons";
+import { twitter, medium } from "./svgIcons";
+import { FormOutlined } from '@ant-design/icons'
 
 export const FilaDogeContract = "0x47664902c0fa1F142c3cd59F532fa3078B2F2270";
 
@@ -126,7 +127,7 @@ export const content_text = [
     key: "introduce-1",
     text: (
       <div>
-        <div>Reward top 600 FIL holders1 with 6% of the total supply!</div>
+        <div>Reward Protocol Labs with 6% of the total supply!</div>
         <div>Reward top 400 ETH holders with 4% of the total supply!</div>
       </div>
     ),
@@ -179,25 +180,29 @@ export const content_text = [
 
 export const columns: any = [
   {
-    dataIndex: "",
+    dataIndex: "sortIndex",
     align: "center",
     title: "Ranking",
-    render: (text: any, Record: any, index: number) => {
+    render: (text: any) => {
       const url =
-        index === 0
+        text === 0
           ? champion
-          : index === 1
+          : text === 1
           ? runnerup
-          : index === 2
+          : text === 2
           ? thirdrunner
           : "";
-      return index < 3 ? <img src={url} className='rank-icon' /> : index + 1;
+      return text < 3 ? <img src={url} className='rank-icon' /> : text + 1;
     },
   },
 
   { dataIndex: "account", title: "Address" },
-  { dataIndex: "f4Address", title: "F4 Address" },
-  { dataIndex: "amount", title: "Rewards" },
+  { dataIndex: "f4Address", title: "f4 Address" },
+  {
+    dataIndex: "amount", title: "Rewards", render: (v:number|string) => { 
+                return Number(v).toLocaleString()
+
+  } },
 ];
 
 export const links = [
@@ -208,12 +213,12 @@ export const links = [
   },
   {
     text: "Medium",
-    link: "",
+    link: "https://medium.com/@filadoge",
     icon:medium,
   },
   {
     text: "Community",
     link: "https://forms.gle/kcpEEneVuvuXdxJz9",
-    icon:community
+    icon: <FormOutlined style={{fontSize:20}}/>
   },
 ];

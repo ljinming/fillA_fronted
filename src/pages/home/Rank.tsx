@@ -34,7 +34,9 @@ export default () => {
     <div className='home-rank'>
       <div className='content'>
         <div className='home-rank_left'>
-          <div className='title-icon'>FilaDoge</div>
+          <div className='title-icon' style={{ cursor: 'pointer' }} onClick={() => { 
+            document.getElementById('app-content')!.scrollTop = 0
+          }}>FilaDoge</div>
           <h3 className='h3-title'>Leaderboards</h3>
         </div>
         <div className='home-rank_right'>

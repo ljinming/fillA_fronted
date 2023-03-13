@@ -224,9 +224,13 @@ class contract {
          
           });
           data.sort((a: any, b: any) => {
-            return Number(a.aamount) - Number(b.aamount);
+            return  Number(b.amount)-Number(a.amount);
           });
-          resolve(data);
+          const showData = data.length > 50 ? data.slice(0, 50) : data;
+          const newData = [...showData,...showData,...showData].map((t:any,index:number) => { 
+            return {...t,sortIndex:index}
+          })
+          resolve(newData);
         }
       );
     });

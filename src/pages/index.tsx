@@ -60,7 +60,7 @@ export default () => {
     <MyContext.Provider value={{ account, setAccount }}>
       <div className='app'>
         <img src={bg} className='bg-Content' alt='' />
-        <div className='app-content'>
+        <div className='app-content' id='app-content'>
           <Head />
           <RouterProvider router={router} />
           <Footer />

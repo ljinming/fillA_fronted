@@ -78,7 +78,9 @@ export default () => {
       </div>
       <div className='home-content_right'>
         <div className='right_header'>
-          <div className='title-icon'>FilaDoge</div>
+          <div className='title-icon' style={{ cursor: 'pointer' }} onClick={() => { 
+            document.getElementById('app-content')!.scrollTop = 0
+          }}>FilaDoge</div>
           <h3 className='h3-title'>Activities</h3>
         </div>
         <div className='right_content'>

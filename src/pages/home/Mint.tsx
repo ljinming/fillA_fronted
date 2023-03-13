@@ -26,15 +26,15 @@ export default () => {
     <div className='rank-card'>
       <div className='card-item'>
         <h3 className='title'>$ FLD for the next Mint</h3>
-        <span className='value'>{mint}</span>
+        <span className='value'>{Number(mint)?.toLocaleString()}</span>
       </div>
       <div className='card-item'>
         <h3 className='title'>$ FLD claimed</h3>
-        <span className='value'>{claimed}</span>
+        <span className='value'>{Number(claimed)?.toLocaleString()}</span>
       </div>
       <div className='card-item'>
         <h3 className='title'>Addresses participated</h3>
-        <span className='value'>{participants}</span>
+        <span className='value'>{Number(participants)?.toLocaleString()}</span>
       </div>
     </div>
   );

@@ -96,6 +96,24 @@ padding:0px
     font-size: 12px;
     word-break: break-all;
 }
+
+.app-notic{
+  .ant-notification-notice-content{
+    // display: flex;
+    // align-items: center;
+    margin-top: 20px;
+    .ant-notification-notice-icon-warning{
+    //   svg{
+    //  // fill: antiquewhite;
+    //   }
+      
+    }
+    .ant-notification-notice-description{
+    margin-bottom: 10px;
+    padding-right: 10px;
+    }
+  }
+}
 @media screen and (max-width: 800px){
   .app-content{
     overflow-x: hidden;

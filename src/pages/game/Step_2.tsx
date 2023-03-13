@@ -53,8 +53,8 @@ export default () => {
     if (!context?.account) {
       return notification.warning({
         message: "",
-        description: 'Please connect to wallet!',
-        duration: 10,
+        description: 'Doggy wants to chase foxy, please connect your wallet!',
+        duration: null,
         className: "app-notic",
       })
     }
@@ -210,7 +210,7 @@ export default () => {
       
         <h3 className='font-title title'>
            <div>Balance:</div>
-          <div className='value'>{banlance}</div>
+          <div className='value'>{Number(banlance)?.toLocaleString()}</div>
           <Tranfe />
         </h3>
          

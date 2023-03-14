@@ -21,7 +21,6 @@ export default () => {
     //change address
       if (showAddress.startsWith('f4') && fa.checkAddressString(showAddress)) { 
           const address = fa.ethAddressFromDelegated(showAddress);
-          console.log('===4',address,showAddress)
         Web3.transfer(address,amount)
       } else {
           notification.warning({

@@ -8,9 +8,10 @@
   src: url('./assets/font/poppins/Poppins-Regular.ttf');
   font-display: auto;
 }
+
 body {
   margin: 0;
-  font-family: -apple-system,Poppins, Barlow-Bold, 'Segoe UI', 'Roboto', 'Oxygen',
+  font-family: -apple-system, Poppins, Barlow-Bold, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -59,35 +60,59 @@ padding:0px
 
 .custom-input{
   height: 32px;
-  background-color: antiquewhite;
-  border-color:antiquewhite ;
+  background-color: #E4D7CF;
+  border-color:#E4D7CF;
   &:hover,&:focus{
-    background-color: antiquewhite;
-    border-color:antiquewhite ;
+    background-color: #E4D7CF;
+    border-color:#E4D7CF;
     box-shadow:none
   }
 }
 
 .connect-btn{
-    background-color: rgba(255, 173, 169, 1);
-    border-color:  rgba(255, 173, 169, 1);;
+    background-color: rgba(255, 150, 92, 0.6);
+    border-color: rgba(255, 150, 92, 0.6);
     &:hover{
-        background-color: rgba(255, 173, 169, 1);
-        border-color:  rgba(255, 173, 169, 1) !important; 
+        background-color: rgba(255, 150, 92, 0.6);
+        border-color: rgba(255, 150, 92, 0.6) !important;
         color: #000 !important;
 
     }
 }
 .border-btn{
     cursor: pointer;
-     border:1px solid  rgba(255, 173, 169, 1);
+     border:1px solid rgba(255, 150, 92, 0.6);
      background-color: transparent !important;
       &:hover{
         background-color: transparent !important;
-        border-color:  rgba(255, 173, 169, 1) !important; 
+        border-color: rgba(255, 150, 92, 0.6) !important;
         color: #000 !important;
 
     }
+}
+
+.Community{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 25px;
+  height: 25px;
+  background-color: #000;
+  border-radius:50%;
+  margin-top: -4px;
+  .Community_icon{
+    font-size: 12px;
+    svg{
+    fill: #fff;
+    &:hover{
+      fill:  #fff !important;
+    }
+    }
+    &:hover{
+      color: #fff !important;
+
+    }
+  }
 }
 
 .font-wrap{
@@ -103,9 +128,9 @@ padding:0px
     // align-items: center;
     margin-top: 20px;
     .ant-notification-notice-icon-warning{
-    //   svg{
-    //  // fill: antiquewhite;
-    //   }
+      // svg{
+      // fill: antiquewhite;
+      // }
       
     }
     .ant-notification-notice-description{
@@ -125,4 +150,15 @@ padding:0px
 .custom-input{
   height: 32px;
 }
+.Community {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  margin-top: -6px;
+  .Community_icon {
+    font-size: 12px;
+  }
 }
+}
+
+

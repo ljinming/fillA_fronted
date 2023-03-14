@@ -5,6 +5,8 @@ import dog_2 from "@/assets/1-5.png";
 import "./style.scss";
 import { useEffect, useRef, useState } from "react";
 import phone from "@/assets/phone.webp";
+import treat from '@/assets/treat.png';
+import treat_a from '@/assets/treat_a.png';
 
 export default () => {
   const chartRef = useRef<HTMLDivElement>(null);
@@ -55,7 +57,7 @@ export default () => {
         <img src={phone} className='phone' alt='' />
         <div className='chart-content' ref={chartRef}>
           <div className='time-icon'>10:35</div>
-          {home_content.map((item, index) => {
+          {home_content.map((item:any, index) => {
             return (
               <div
                 id={`container-${index}`}
@@ -69,7 +71,7 @@ export default () => {
                 />
                 <div
                   className={`container-text ${index % 2 ? "text-right" : ""}`}>
-                  {item.text}
+                  {item?.text}
                 </div>
               </div>
             );
@@ -81,7 +83,7 @@ export default () => {
           <div className='title-icon' style={{ cursor: 'pointer' }} onClick={() => { 
             document.getElementById('app-content')!.scrollTop = 0
           }}>FilaDoge</div>
-          <h3 className='h3-title'>Activities</h3>
+          <h3 className='h3-title'>Treats</h3>
         </div>
         <div className='right_content'>
           {content_text.map((item: any, index) => {
@@ -123,7 +125,8 @@ export default () => {
             onClick={() => {
               window.open("/share");
             }}>
-            Join Game
+            Join Games
+            <img src={treat} className='btn_icon' alt="" />
           </div>
         </div>
       </div>

@@ -45,6 +45,15 @@ class contract {
     this.account = account;
   }
 
+  isLotteryStarted() { 
+    return new Promise<boolean>((resolve, reject) => {
+      this.myContract.methods.isLotteryStarted().call({ from: this.account }, (err: any, res: any) => { 
+        resolve(res)
+       })
+     })
+   
+  }
+
   async getBalance(account: string): Promise<number | string> {
     this.account = account;
     return new Promise<number | string>((resolve, reject) => {
@@ -57,26 +66,53 @@ class contract {
     });
   }
 
+   async MintBanlance(account: string): Promise<number | string> {
+    this.account = account;
+    return new Promise<number | string>((resolve, reject) => {
+      this.myContract.methods
+        .inviteeRewardReceived(account)
+        .call({ form: this.account }, (err: any, res: any) => {
+          const number = getValueDivide(Number(res), 18, 0);
+          resolve(number);
+        });
+    });
+  }
+
+
   transfer(address: string, amount: number) { 
     const value = getValueMultiplied(Number(amount));
-    this.myContract.methods.transfer(address, value).send({
+    web3.eth.sendTransaction({
       from: this.account,
-      value: value,
-      to:address
-    }, () => { }).on("receipt", (data: any) => {
-          console.log('-transfer---44',data)
-          const returnValue = data?.events?.Transfer?.returnValues || {};
-          const num = returnValue.value
-            ? getValueDivide(Number(returnValue.value), 18, 0)
-            : "";
-          console.log("receipt", data);
-          notification.success({
-            message: "Mint",
-            description: `Congratulate, You got ${num} FLD`,
+      to: address,
+       value,
+    }, () => { }).then(function(receipt){
+      //console.log('=receipt===5', receipt)
+       notification.success({
+            message: "",
+            description: `Transaction Successfully `,
             duration: 10,
             className: "app-notic",
           });
-        })
+      });
+
+    // this.myContract.methods.transfer(address, value).send({
+    //   from: this.account,
+    //   value: value,
+    //   to:address
+    // }, () => { }).on("receipt", (data: any) => {
+    //       console.log('-transfer---44',data)
+    //       const returnValue = data?.events?.Transfer?.returnValues || {};
+    //       const num = returnValue.value
+    //         ? getValueDivide(Number(returnValue.value), 18, 0)
+    //         : "";
+    //       console.log("receipt", data);
+    //       notification.success({
+    //         message: "Mint",
+    //         description: `Congratulate, You got ${num} FLD`,
+    //         duration: 10,
+    //         className: "app-notic",
+    //       });
+    //     })
   }
 
   hasBeenInvited(account:string) {
@@ -100,7 +136,6 @@ class contract {
   }
 
   mint(account: string, accountValue: string) {
-    console.log('mint---',account,accountValue)
     return new Promise<boolean>((resolve, reject) => {
       this.myContract.methods
         .mint(account,accountValue)
@@ -113,7 +148,6 @@ class contract {
           const num = returnValue.value
             ? getValueDivide(Number(returnValue.value), 18, 0)
             : "";
-          console.log("receipt", data);
           notification.success({
             message: "Mint",
             description: `Congratulations, you claimed ${num} FLD!`,
@@ -122,7 +156,6 @@ class contract {
           });
         })
         .on("error", (err: any) => {
-          console.log("error", err);
           resolve(false);
           const messageData = err?.error?.data?.message ;
           let messages = 'Fox has rejected doggy’s transaction!'
@@ -143,8 +176,6 @@ class contract {
   }
 
   lottery(account: string, accountValue: string) {
-        console.log('lottery---',account,accountValue)
-
     return new Promise<boolean>((resolve, reject) => {
       this.myContract.methods
         .lottery(account,accountValue)
@@ -198,7 +229,6 @@ class contract {
         (err: any, res: any) => {
           const number =
             type === "participants" ? res : getValueDivide(Number(res), 18, 0);
-          console.log("=rank_mint==3", type, menthod, res, number);
           resolve(number);
         }
       );

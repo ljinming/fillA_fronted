@@ -4,6 +4,7 @@ import Twitter from "@/assets/twitter.svg";
 import copy from "copy-to-clipboard";
 import { MyContext } from "@/pages/content";
 import fa from "@glif/filecoin-address";
+import ShareLink from 'react-twitter-share-link'
 
 import { notification } from "antd";
 import { useContext } from "react";
@@ -20,11 +21,11 @@ export default () => {
     context?.account ? `/${f4Address}` : ""
   }`;
   const shareTitle =
-    `Who's luckier? Win free $FLD tokens through @FilaDoge game and lottery`;
+    `Who's luckier? Win free $FLD tokens through @FilaDoge game and lottery 👇`;
   const url= `&url=${encodeURIComponent(
     shareUrl
   )}`
-  const shareTwiter = `https://twitter.com/intent/tweet?text=${encodeURIComponent(shareTitle)}${url}&hashtags=$FLD&via=FilaDoge`;
+  const shareTwiter = `https://twitter.com/intent/tweet?text=${encodeURIComponent(shareTitle)}${url}&hashtags= $FLD &via= FilaDoge`;
 
   const copyShareLink = () => {
     copy(shareUrl);
@@ -35,6 +36,7 @@ export default () => {
         className: "app-notic",
       })
   };
+  //href={shareTwiter} 
   return (
     <div className='card step_3'>
       <div className='card-header'>
@@ -66,7 +68,11 @@ export default () => {
         </div>
         <div className='item'>
           <img className='img' src={Twitter} />
-          <a href={shareTwiter}>Share Twiter</a>
+          <ShareLink link={shareUrl} text={shareTitle } hashtags={['$FID','FilaDoge']}  related={['FilaDoge']}> 
+            {(shareUrl: string | undefined) => (
+                <a href={shareUrl} className='twitter' target='_blank'>Share Twiter</a>
+            )}
+          </ShareLink>
         </div>
       </div>
     </div>

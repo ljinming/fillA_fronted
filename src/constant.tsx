@@ -10,29 +10,29 @@ import runnerup from "@/assets/runnerup.png";
 import { twitter, medium } from "./svgIcons";
 import { FormOutlined } from '@ant-design/icons'
 
-export const FilaDogeContract = "0x47664902c0fa1F142c3cd59F532fa3078B2F2270";
+export const FilaDogeContract = "0x70c31e973522D702d200C04644F341cEC22dccAD";
 
-export const content = [
-  [
+export const home_content = [
+  
     {
       title: "",
-      text: "Hey, have you heard that the FVM is launching soon? ",
+      text: "Hey, have you heard that the FEVM is launching soon? ",
     },
     {
       title: "",
-      text: "Yes, doggies are all talking about it, but what is the FVM again?",
+      text: "Yes, doggies are all talking about it, but what is the FEVM again?",
     },
     {
       title: "",
-      text: "FVM stands for Filecoin Virtual Machine, it is a runtime environment for smart contracts (also called actors) on the Filecoin network.",
+      text: "FEVM stands for Filecoin Virtual Machine, it is a runtime environment for smart contracts (also called actors) on the Filecoin network.",
     },
     {
       title: "",
-      text: <p>Similarto the EVM,EthereumVirtualMachine?</p>,
+      text: "Similarto the EVM,EthereumVirtualMachine?",
     },
     {
       title: "",
-      text: "Yes, FVM brings user programmability to Filecoin, unleashing the enormous potential of an open data economy. Do you want to have some fun?",
+      text: "Yes, FEVM brings user programmability to Filecoin, unleashing the enormous potential of an open data economy. Do you want to have some fun?",
     },
     {
       title: "",
@@ -40,18 +40,18 @@ export const content = [
     },
     {
       title: "",
-      text: "FilaDoge aims to become the first memecoin on FVM and will be launching the same day as the FVM on March 14, 2023. There will be great deal of airdrop games to reward the outstanding contributors and promoters of the Filecoin FVM.",
+      text: "FilaDoge aims to become the first memecoin on FEVM and will be launching on March 14, the same day as the FVM. There will be great deal of airdrop games to reward the outstanding contributors and promoters of the Filecoin FEVM.",
     },
-  ],
 
-  [
+
+  
     {
       title: "",
       text: "Do I need to have a Filecoin wallet address in order to participate?",
     },
     {
       title: "",
-      text: "Good question! Since the FVM is fully EVM-compatible, new ERC-20 tokens can be launched on the Filecoin network or bridged directly to token pools on other chains. Users from the Ethereum can participate with their 0x addresses as well.",
+      text: "Good question! Since the FEVM is fully EVM-compatible, new ERC-20 tokens can be launched on the Filecoin network or bridged directly to token pools on other chains. Users from the Ethereum can participate with their 0x addresses as well.",
     },
     {
       title: "",
@@ -59,66 +59,16 @@ export const content = [
     },
     {
       title: "",
-      text: "Yes, technically anyone can. As I mentioned, to commemorate this historic moemtn of both Filecoin and Ethereum, FilaDoge rewards the outstaning collaborators of both communities. Top FIL and ETH holders, users who completed promotion tasks and lottery game participants will receive various amount of airdrops.",
+      text: "Yes, technically anyone can. As I mentioned, to commemorate this historic moment of both Filecoin and Ethereum, FilaDoge rewards the outstaning collaborators of both communities. Top FIL and ETH holders, users who completed promotion tasks and the lottery game participants will be able to receive airdrops and claim various amount of FLD tokens.",
     },
     {
       title: "",
-      text: "Hooray!!!",
+      text: "Hooray!!! Let's follow their Twitter and stay in the loop!",
     },
-  ],
+  
 ];
 
-export const home_content = [
-  {
-    title: "",
-    text: "Hey, have you heard that the FVM is launching soon? ",
-  },
-  {
-    title: "",
-    text: "Yes, doggies are all talking about it. What is the FVM again?",
-  },
-  {
-    title: "",
-    text: "FVM stands for Filecoin Virtual Machine, it is a runtime environment for smart contracts (also called actors) on the Filecoin network.",
-  },
-  {
-    title: "",
-    text: "Similarto to the EVM?",
-  },
-  {
-    title: "",
-    text: "Yes, FVM brings user programmability to Filecoin, unleashing the enormous potential of an open data economy. Do you want to have some fun?",
-  },
-  {
-    title: "",
-    text: "What’s in your mind?",
-  },
-  {
-    title: "",
-    text: "FilaDoge aims to become the first memecoin on FVM and will be launching the same day as the FVM on March 14, 2023. There will be great deal of airdrop games to reward the outstanding contributors and promoters of the Filecoin FVM.",
-  },
 
-  {
-    title: "",
-    text: "Do I need to have a Filecoin wallet address in order to participate?",
-  },
-  {
-    title: "",
-    text: "Good question! Since the FVM is fully EVM-compatible, new ERC-20 tokens can be launched on the Filecoin network or bridged directly to token pools on other chains. Users from the Ethereum can participate with their 0x addresses as well.",
-  },
-  {
-    title: "",
-    text: "Can’t wait already. Who’s gonna receive airdrop, can I?",
-  },
-  {
-    title: "",
-    text: "Yes, technically anyone can. As I mentioned, to commemorate this historic moment of both Filecoin and Ethereum, FilaDoge rewards the outstanding collaborators of both communities. Top FIL and ETH holders, users who completed promotion tasks and lottery game participants will receive various amount of FilaDoge token airdrops.",
-  },
-  {
-    title: "",
-    text: "Hooray!!! Let me follow their Twitter and stay in the loop.",
-  },
-];
 
 export const content_text = [
   {
@@ -219,6 +169,8 @@ export const links = [
   {
     text: "Community",
     link: "https://forms.gle/kcpEEneVuvuXdxJz9",
-    icon: <FormOutlined style={{fontSize:20}}/>
+    icon: <span className="Community">
+          <FormOutlined className="Community_icon"/>
+    </span>  
   },
 ];

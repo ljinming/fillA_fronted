@@ -8,3 +8,5 @@ declare global {
 interface Window {
     ethereum:any
 };
+
+declare module 'react-twitter-share-link';

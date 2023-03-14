@@ -9,11 +9,18 @@ import Web3 from "@/server/Web3";
 import fa from "@glif/filecoin-address";
 import { LoadingOutlined } from "@ant-design/icons";
 
+
+const banlances =[ 'Mint', 'Lottery', 'Referral'];
+
 export default () => {
   const context = useContext<any>(MyContext);
   const [banlance, setBanlance] = useState<string | number>(0);
   const [mint, setMint] = useState("");
   const [game, setGame] = useState("");
+  const [start, setStart] = useState(true);
+  const [mintBanlance, setMintBanlance] = useState<string | number>(0);
+    const [lotteryBanlance,setLotteryBanlance] = useState<string | number>(0);
+    const [ReferralBanlance,setReferralBanlance] = useState<string | number>(0);
 
   const [loading, setLoading] = useState<Record<string, boolean>>({
     mint: false,
@@ -29,6 +36,7 @@ export default () => {
     if (context.account) {
       Web3.setAccount(context.account);
       getbBanlance(context.account)
+      startLottery()
       PreMint(context.account);
     }
   }, [context?.account]);
@@ -36,7 +44,15 @@ export default () => {
   const getbBanlance=(account:string)=>{ 
       Web3.getBalance(account).then((res: number | string) => {
       setBanlance(res);
-    });
+      });
+    // Web3.MintBanlance(account).then((res: number | string) => {
+    //   setMintBanlance(res);
+    // });
+  }
+
+  const startLottery = async () => { 
+    const res = await Web3.isLotteryStarted()
+      setStart(res)
   }
 
   const PreMint = async (account:string) => {
@@ -61,7 +77,6 @@ export default () => {
 
     let invited: string =
       address || "f410faaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaonc6iji";
-    //0x0000000000000000000000000000000000000000
     const value = type === "mint" ? mint : game;
 
     if (address && !fa.validateAddressString(address)) {
@@ -87,6 +102,7 @@ export default () => {
     }
 
     let accountValue = type === "mint" ? mint : game;
+
     if (accountValue === address) {
       return notification.warning({
         message: "",
@@ -120,6 +136,7 @@ export default () => {
     const preMint = await PreMint(accountValue)
     
     const showMint = preMint || isMint;
+
     if (type === "mint") {
       if (showMint.mint) {
          return notification.warning({
@@ -208,13 +225,24 @@ export default () => {
       </div>
       <div className='game-header'>
       
-        <h3 className='font-title title'>
+        <div className="banlance-content">
+          
+             {/* {banlances.map(title => { 
+              return  <h3 className='font-title title'>
+                <div>{ title}:</div>
+               <div className='value'>{Number(banlance)?.toLocaleString()}</div>
+            </h3>
+             })} */}
+           <h3 className='font-title title'>
            <div>Balance:</div>
           <div className='value'>{Number(banlance)?.toLocaleString()}</div>
           <Tranfe />
         </h3>
          
-        <h3 className='font-title title'>
+        </div>
+      
+         
+        <h3 className='font-title title'> 
           <div>f4 address converter:</div>
           <Calc />
         </h3>
@@ -231,7 +259,12 @@ export default () => {
               <div className='detail'>
                 <span className='detail_text'>{item.detail}</span>
                 <div className='input-label'>
-                  {item.label}
+                  <div>
+                    {item.label}
+                    { item.key === 'game' && start&&<span className="start-time">* start 10:30</span>}
+                  </div>
+                 
+                
                   <Input
                     value={item.title === "Mint" ? mint : game}
                     className='custom-input'
@@ -248,9 +281,12 @@ export default () => {
               </div>
 
               <div
-                className={`btn border-btn`}
+                className={`btn border-btn ${item.key === 'game' ? start ? '':'disabled-btn':''}`}
                 onClick={() => { 
                   if (loading[item.key]) return
+                  if (item.key === 'game' && !start) { 
+                    return
+                  }
                    handleClick(item.key)
                 }}>
                 {loading[item.key] ? <LoadingOutlined /> : item.btnText}

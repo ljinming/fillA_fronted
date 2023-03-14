@@ -5,19 +5,7 @@ import twitter from "@/assets/twitter_bg.png";
 import Twitter from "@/assets/twitter.svg";
 
 export default () => {
-  //   const handleCilck = () => {
-  //     setInterval(function () {
-  //       window.scrollTo(0, document.body.scrollHeight);
-  //       const item: HTMLDivElement | any = document.getElementsByClassName(
-  //         ".not-following .user-actions-follow-button.js-follow-btn"
-  //       )[0];
-  //       console.log("===334", item);
-  //       if (item) {
-  //         item?.click();
-  //       }
-  //     }, 1000);
-  //   };
-  //https://twitter.com/intent/follow?screen_name=jinmingliu17
+  
   return (
     <div className='card'>
       <div className='card-header'>
@@ -27,7 +15,6 @@ export default () => {
       </div>
       <div className='detail'>
         Follow us on Twitter and stay in the loop for more game and fun!
-        {/* <img className='img' src={twitter} /> */}
       </div>
 
       <div

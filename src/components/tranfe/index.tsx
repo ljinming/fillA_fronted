@@ -1,10 +1,11 @@
 /** @format */
-import { Modal, Input, notification } from "antd";
+import { Modal, Input,notification, message } from "antd";
 import { useState } from "react";
 import { Button } from "antd";
 import fa from "@glif/filecoin-address";
 import Web3 from "@/server/Web3";
-import { swapSvg, } from "@/svgIcons";
+import { swapSvg,warningIcon } from "@/svgIcons";
+import { message_config } from '@/constant'
 import "./style.scss";
 
 export default () => {
@@ -17,18 +18,34 @@ export default () => {
     TEST = "t",
   }
 
-  const handleChange = () => {
+    const handleChange = async () => {
+            const isNetwork = await Web3.getNetWork()
+
+        if (!isNetwork) { 
+              return  notification.warning({
+            message: "",
+            description: 'Please make sure the Filecoin Network is selected in your wallet.',
+            duration: 10,
+            className: "app-notic",
+             icon: <span className="notification-icon" >{ warningIcon}</span>
+          });
+        }
     //change address
       if (showAddress.startsWith('f4') && fa.checkAddressString(showAddress)) { 
+
           const address = fa.ethAddressFromDelegated(showAddress);
         Web3.transfer(address,amount)
       } else {
-          notification.warning({
-        message: "",
-        description: `It doesn't smell like an f4 address!`,
-        duration: 10,
-        className: "app-notic",
-      })
+             message.warning({
+                    content:`It doesn't smell like an f4 address!`,
+                    ...message_config
+                  })
+    //       notification.warning({
+    //     message: "",
+    //     description: `It doesn't smell like an f4 address!`,
+    //     duration: 10,
+    //     className: "app-notic",
+    //   })
       }
   };
   return (

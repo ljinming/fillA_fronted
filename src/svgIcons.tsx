@@ -199,3 +199,45 @@ export const swapSvg = <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewB
 </svg>
 
 
+
+export const warningIcon = <svg xmlns="http://www.w3.org/2000/svg"  viewBox="0 0 30 30" version="1.1">
+    <defs>
+        <linearGradient x1="39.8995973%" y1="0%" x2="50%" y2="100%" id="linearGradient-1">
+            <stop stopColor="#6E788E" offset="0%"/>
+            <stop stopColor="#09090C" offset="100%"/>
+        </linearGradient>
+        <filter id="filter-2">
+            <feColorMatrix in="SourceGraphic" type="matrix" values="0 0 0 0 1.000000 0 0 0 0 1.000000 0 0 0 0 1.000000 0 0 0 1.000000 0"/>
+        </filter>
+    </defs>
+    <g id="页面-1" stroke="none" strokeWidth="1" fill="none" fillRule="evenodd">
+        <g id="FilaDoge-标题/报错" transform="translate(-635.000000, -684.000000)">
+            <g id="编组-4" transform="translate(635.000000, 684.000000)">
+                <path d="M0,15 C0,23.3125122 6.68748779,30 15,30 C23.3125122,30 30,23.3125122 30,15 C30,6.68748779 23.3125122,0 15,0 C6.68748779,0 0,6.68748779 0,15 Z" id="Combined-Shape" fill="url(#linearGradient-1)"/>
+                <g filter="url(#filter-2)" id="29感叹号">
+                    <g transform="translate(14.000000, 7.000000)">
+                        <path d="M0.6192,9.9456 C0.7728,10.404 1.0776,10.7088 1.536,10.7088 C1.9944,10.7088 2.2992,10.404 2.4528,9.9456 L3.0624,1.548 C3.0624,0.6312 2.2992,0.0216 1.536,0.0216 C0.6192,0.0216 0.0096,0.7848 0.0096,1.7016 L0.6192,9.9456 L0.6192,9.9456 Z M1.536,12.2376 C0.6192,12.2376 0.0096,12.8472 0.0096,13.764 C0.0096,14.6808 0.6192,15.2904 1.536,15.2904 C2.4528,15.2904 3.0624,14.6808 3.0624,13.764 C3.0624,12.8472 2.4528,12.2376 1.536,12.2376 Z" id="形状" fill="#000000" fillRule="nonzero"/>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
+
+export const successIcon = <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30 30" version="1.1">
+    <defs>
+        <linearGradient x1="39.8995973%" y1="0%" x2="50%" y2="100%" id="linearGradient-1">
+            <stop stopColor="#6E788E" offset="0%"/>
+            <stop stopColor="#09090C" offset="100%"/>
+        </linearGradient>
+    </defs>
+    <g id="页面-1" stroke="none" strokeWidth="1" fill="none" fillRule="evenodd">
+        <g id="FilaDoge-标题/报错" transform="translate(-635.000000, -592.000000)">
+            <g id="编组-2" transform="translate(635.000000, 592.000000)">
+                <path d="M0,15 C0,23.3125122 6.68748779,30 15,30 C23.3125122,30 30,23.3125122 30,15 C30,6.68748779 23.3125122,0 15,0 C6.68748779,0 0,6.68748779 0,15 Z" id="Combined-Shape" fill="url(#linearGradient-1)"/>
+                <path d="M11.623324,20.1102907 C11.3177685,19.7474435 11.3655115,19.2055598 11.7283587,18.9000042 L22.2604768,10.0627647 C22.623324,9.7572091 23.1652077,9.80495216 23.4707632,10.1677994 C23.7763188,10.5306466 23.7285757,11.0725303 23.3657285,11.3780858 L12.8336105,20.2153254 C12.4707632,20.520881 11.9288796,20.4731379 11.623324,20.1102907 L11.623324,20.1102907 Z" id="路径" stroke="#FFFFFF" strokeWidth="0.3" fill="#FFFFFF" fillRule="nonzero" transform="translate(17.547044, 15.139045) rotate(-5.000000) translate(-17.547044, -15.139045) "/>
+                <path d="M13.0009282,20.8614609 C12.6380809,21.1670164 12.0961973,21.1192734 11.7906417,20.7564261 L7.37202192,15.48798 C7.06646636,15.1251327 7.11420942,14.5832491 7.47705664,14.2776935 C7.83990386,13.972138 8.38178754,14.019881 8.6873431,14.3827282 L13.10835,19.6511744 C13.4115184,20.0140216 13.3661625,20.5559053 13.0009282,20.8614609 Z" id="路径" stroke="#FFFFFF" strokeWidth="0.3" fill="#FFFFFF" fillRule="nonzero" transform="translate(10.239590, 17.569577) rotate(-5.000000) translate(-10.239590, -17.569577) "/>
+            </g>
+        </g>
+    </g>
+</svg>

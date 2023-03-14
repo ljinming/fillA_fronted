@@ -3,7 +3,6 @@
 import { useEffect, useState } from "react";
 import copy from "copy-to-clipboard";
 import { Typography, Tooltip, Image } from "antd";
-import { copySvg } from "@/svgIcons";
 
 const { Text } = Typography;
 

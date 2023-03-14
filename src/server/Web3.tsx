@@ -6,6 +6,7 @@ import fa from "@glif/filecoin-address";
 import { getValueDivide ,getValueMultiplied} from "@/utils";
 import Web3 from "web3";
 import { notification } from "antd";
+import { successIcon,warningIcon } from '@/svgIcons'
 
 //import { ethers } from 'ethers';
 
@@ -39,6 +40,13 @@ class contract {
       this.contractAbi,
       this.contractAddress
     );
+    this.getNetWork()
+  }
+
+  async getNetWork() { 
+    const chainId = await web3.eth.getChainId();
+    return chainId === 314
+
   }
 
   setAccount(account: string) {
@@ -76,6 +84,30 @@ class contract {
           resolve(number);
         });
     });
+   }
+  
+    async LotteryBanlance(account: string): Promise<number | string> {
+    this.account = account;
+    return new Promise<number | string>((resolve, reject) => {
+      this.myContract.methods
+        .gamblerRewardReceived(account)
+        .call({ form: this.account }, (err: any, res: any) => {
+          const number = getValueDivide(Number(res), 18, 0);
+          resolve(number);
+        });
+    });
+    }
+  
+    async ReferBanlance(account: string): Promise<number | string> {
+    this.account = account;
+    return new Promise<number | string>((resolve, reject) => {
+      this.myContract.methods
+        .inviterRewardReceived(account)
+        .call({ form: this.account }, (err: any, res: any) => {
+          const number = getValueDivide(Number(res), 18, 0);
+          resolve(number);
+        });
+    });
   }
 
 
@@ -92,6 +124,7 @@ class contract {
             description: `Transaction Successfully `,
             duration: 10,
             className: "app-notic",
+             icon: <span className="notification-icon" >{ successIcon}</span>
           });
       });
 
@@ -145,14 +178,16 @@ class contract {
         .on("receipt", (data: any) => {
           resolve(true);
           const returnValue =  Array.isArray(data?.events?.Transfer)? data?.events?.Transfer[1]?.returnValues || {} :data?.events?.Transfer?.returnValues;
-          const num = returnValue.value
+          let num = returnValue.value
             ? getValueDivide(Number(returnValue.value), 18, 0)
             : "";
+          num= Number(num).toLocaleString()
           notification.success({
             message: "Mint",
             description: `Congratulations, you claimed ${num} FLD!`,
             duration: 10,
             className: "app-notic",
+            icon: <span className="notification-icon" >{ successIcon}</span>
           });
         })
         .on("error", (err: any) => {
@@ -170,6 +205,7 @@ class contract {
             description: messages,
             duration: 10,
             className: "app-notic",
+             icon: <span className="notification-icon" >{ warningIcon}</span>
           });
         });
     });
@@ -185,15 +221,16 @@ class contract {
         .on("receipt", (data: any) => {
           resolve(true);
           const returnValue =  Array.isArray(data?.events?.Transfer)? data?.events?.Transfer[1]?.returnValues || {} :data?.events?.Transfer?.returnValues;
-          const num = returnValue.value
+          let num = returnValue.value
             ? getValueDivide(Number(returnValue.value), 18, 0)
             : "";
-          console.log("receipt", data);
+          num= Number(num).toLocaleString()
           notification.success({
             message: "lottery",
             description: `Congratulations, you won ${num} FLD!`,
             duration: 10,
             className: "app-notic",
+             icon: <span className="notification-icon" >{ successIcon}</span>
           });
         })
         .on("error", (err: any) => {
@@ -211,6 +248,8 @@ class contract {
             description: messages,
             duration: 10,
             className: "app-notic",
+            icon: <span className="notification-icon" >{ warningIcon}</span>
+
           });
         });
     });

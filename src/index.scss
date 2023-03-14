@@ -50,7 +50,7 @@ line-height: 16px;
 -webkit-background-clip: text;
 }
 .h3-title{
-  font-size: 66px;
+font-size: 66px;
 font-family: Barlow-ExtraBold, Barlow;
 font-weight: 800;
 color: #23262F;
@@ -67,6 +67,11 @@ padding:0px
     border-color:#E4D7CF;
     box-shadow:none
   }
+}
+
+
+.font-title{
+  font-size: 18px;
 }
 
 .connect-btn{
@@ -138,7 +143,32 @@ padding:0px
     padding-right: 10px;
     }
   }
+  .notification-icon{
+    display: inline-block;
+    width: 24px;
+  }
 }
+
+//message 
+.app-message{
+  .ant-message-notice-content{
+     .ant-message-custom-content{
+       display: flex;
+       align-items: center;
+       justify-content: center;
+       column-gap: 10px;
+       font-size: 1px;
+     }
+    padding: 13px 30px;
+  }
+  .message-icon{
+    display: inline-block;
+    width: 21px;
+    height: 21px;
+  }
+}
+
+
 @media screen and (max-width: 800px){
   .app-content{
     overflow-x: hidden;
@@ -156,7 +186,7 @@ padding:0px
   border-radius: 50%;
   margin-top: -6px;
   .Community_icon {
-    font-size: 12px;
+    font-size: 16px;
   }
 }
 }

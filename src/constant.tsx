@@ -8,7 +8,8 @@ import thirdrunner from "@/assets/thirdrunner.png";
 import champion from "@/assets/champion.png";
 import runnerup from "@/assets/runnerup.png";
 import { twitter, medium } from "./svgIcons";
-import { FormOutlined } from '@ant-design/icons'
+import { FormOutlined } from '@ant-design/icons';
+import { warningIcon ,successIcon} from '@/svgIcons'
 
 export const FilaDogeContract = "0x70c31e973522D702d200C04644F341cEC22dccAD";
 
@@ -28,7 +29,7 @@ export const home_content = [
     },
     {
       title: "",
-      text: "Similarto the EVM,EthereumVirtualMachine?",
+      text: "Similar to the EVM, Ethereum Virtual Machine?",
     },
     {
       title: "",
@@ -68,8 +69,16 @@ export const home_content = [
   
 ];
 
-
-
+export const message_config = {
+         className: 'app-message',
+        duration: 5,
+       icon: <span className="message-icon">{warningIcon}</span> 
+}
+export const message_config_success = {
+    className: 'app-message',
+        duration: 5,
+       icon: <span className="message-icon">{successIcon}</span> 
+}
 export const content_text = [
   {
     icon: airdrop,

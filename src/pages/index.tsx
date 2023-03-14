@@ -8,6 +8,7 @@ import Footer from "@/components/footers";
 import Game from "@/pages/game";
 import bg from "@/assets/bg.svg";
 import { MyContext } from "./content";
+import web3 from 'web3'
 const router = createBrowserRouter([
   {
     path: "/",
@@ -25,7 +26,6 @@ const router = createBrowserRouter([
 
 export default () => {
   const [account, setAccount] = useState("");
-
   useEffect(() => {
     const obj = JSON.parse(localStorage?.getItem("login") || "{}");
     if (obj && obj.length > 0) {
@@ -42,6 +42,13 @@ export default () => {
 
     if (window.ethereum) {
       window.ethereum.on("accountsChanged", handleAccountsChanged);
+      // window.ethereum.on('chainChanged', (chainId:any) => {
+      //   console.log('----3',chainId)
+      //     // Handle the new chain.
+      //     // Correctly handling chain changes can be complicated.
+      //     // We recommend reloading the page unless you have good reason not to.
+      //   //  window.location.reload();
+      //   });
     } else {
       console.log("=不支持钱包 || 未下载钱包");
     }

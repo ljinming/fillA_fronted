@@ -1,7 +1,4 @@
 /** @format */
-import { Button } from "antd";
-// import twitter from "twitter-auto-follower";
-import twitter from "@/assets/twitter_bg.png";
 import Twitter from "@/assets/twitter.svg";
 
 export default () => {

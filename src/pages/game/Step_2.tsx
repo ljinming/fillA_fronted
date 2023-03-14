@@ -1,13 +1,15 @@
 /** @format */
 import Calc from "@/components/calc";
-import {  Input, notification } from "antd";
+import {  Input,message,notification } from "antd";
 import { MyContext } from "@/pages/content";
 import { useParams } from "react-router-dom";
 import Tranfe from '@/components/tranfe'
-import { useState, useContext, useEffect, useRef } from "react";
+import { useState, useContext, useEffect, } from "react";
 import Web3 from "@/server/Web3";
 import fa from "@glif/filecoin-address";
 import { LoadingOutlined } from "@ant-design/icons";
+import { message_config } from '@/constant'
+import { warningIcon } from '@/svgIcons'
 
 
 const banlances =[ 'Mint', 'Lottery', 'Referral'];
@@ -45,9 +47,15 @@ export default () => {
       Web3.getBalance(account).then((res: number | string) => {
       setBanlance(res);
       });
-    // Web3.MintBanlance(account).then((res: number | string) => {
-    //   setMintBanlance(res);
-    // });
+    Web3.MintBanlance(account).then((res: number | string) => {
+      setMintBanlance(res);
+    });
+      Web3.LotteryBanlance(account).then((res: number | string) => {
+      setLotteryBanlance(res)
+      });
+      Web3.ReferBanlance(account).then((res: number | string) => {
+      setReferralBanlance(res);
+    });
   }
 
   const startLottery = async () => { 
@@ -67,12 +75,27 @@ export default () => {
 
   const handleClick = async (type: string) => {
     if (!context?.account) {
-      return notification.warning({
-        message: "",
-        description: 'Doggy wants to chase foxy, please connect your wallet!',
-        duration: null,
-        className: "app-notic",
+     return message.warning({
+        content: 'Doggy wants to chase foxy, please connect your wallet!',
+        ...message_config
       })
+      // return notification.warning({
+      //   message: "",
+      //   description: 'Doggy wants to chase foxy, please connect your wallet!',
+      //   duration: null,
+      //   className: "app-notic",
+      // })
+    }
+    const isNetwork = await Web3.getNetWork()
+    if (!isNetwork) { 
+      return  notification.warning({
+            message: "",
+            description: 'Please make sure the Filecoin Network is selected in your wallet.',
+            duration: 10,
+            className: "app-notic",
+             icon: <span className="notification-icon" >{ warningIcon}</span>
+          });
+     
     }
 
     let invited: string =
@@ -80,12 +103,16 @@ export default () => {
     const value = type === "mint" ? mint : game;
 
     if (address && !fa.validateAddressString(address)) {
-      return notification.warning({
-        message: "",
-        description: 'Invalid invite code!',
-        duration: 10,
-        className: "app-notic",
+      return message.warning({
+        content: 'Invalid invite code!',
+        ...message_config
       })
+      // return notification.warning({
+      //   message: "",
+      //   description: 'Invalid invite code!',
+      //   duration: 10,
+      //   className: "app-notic",
+      // })
     }
   
     //value 以f4 地址
@@ -93,42 +120,58 @@ export default () => {
       value.length === 0 ||
       (!value.startsWith("f4"))
     ) {
-      return notification.warning({
-        message: "",
-        description: `It doesn't smell like an f4 address!`,
-        duration: 10,
-        className: "app-notic",
+      return message.warning({
+        content:`It doesn't smell like an f4 address!`,
+      ...message_config
       })
+      // return notification.warning({
+      //   message: "",
+      //   description: `It doesn't smell like an f4 address!`,
+      //   duration: 10,
+      //   className: "app-notic",
+      // })
     }
 
     let accountValue = type === "mint" ? mint : game;
 
     if (accountValue === address) {
-      return notification.warning({
-        message: "",
-        description: 'Self-invite is not supported, please ask other doggies to invite you!',
-        duration: 10,
-        className: "app-notic",
+       return message.warning({
+        content:'Self-invite is not supported, please ask other doggies to invite you!',
+         ...message_config
       })
+      // return notification.warning({
+      //   message: "",
+      //   description: 'Self-invite is not supported, please ask other doggies to invite you!',
+      //   duration: 10,
+      //   className: "app-notic",
+      // })
     }
     if (accountValue && fa.validateAddressString(accountValue)) {
       accountValue = fa.ethAddressFromDelegated(accountValue)
     } else {
-      return notification.warning({
-        message: "",
-        description: `It doesn't smell like an f4 address!`,
-        duration: 10,
-        className: "app-notic",
+        return message.warning({
+        content:`It doesn't smell like an f4 address!`,
+         ...message_config
       })
+      // return notification.warning({
+      //   message: "",
+      //   description: `It doesn't smell like an f4 address!`,
+      //   duration: 10,
+      //   className: "app-notic",
+      // })
     }
 
     if (accountValue === '0x0000000000000000000000000000000000000000') {
-      return notification.warning({
-        message: "",
-        description:  `It doesn't smell like an f4 address!`,
-        duration: 10,
-        className: "app-notic",
+         return message.warning({
+        content:`It doesn't smell like an f4 address!`,
+         ...message_config
       })
+      // return notification.warning({
+      //   message: "",
+      //   description:  `It doesn't smell like an f4 address!`,
+      //   duration: 10,
+      //   className: "app-notic",
+      // })
     }
 
     invited = fa.ethAddressFromDelegated(invited)
@@ -139,12 +182,16 @@ export default () => {
 
     if (type === "mint") {
       if (showMint.mint) {
-         return notification.warning({
-        message: "",
-        description: 'Already claimed, leave other doggies a chance.',
-        duration: 10,
-        className: "app-notic",
+           return message.warning({
+        content:'Already claimed, leave other doggies a chance.',
+         ...message_config
       })
+      //    return notification.warning({
+      //   message: "",
+      //   description: 'Already claimed, leave other doggies a chance.',
+      //   duration: 10,
+      //   className: "app-notic",
+      // })
       }
       setLoading({
         ...loading,
@@ -158,12 +205,16 @@ export default () => {
       });
     } else if (type === "game") {
       if (showMint.game) {
-        return notification.warning({
-        message: "",
-        description: 'Already gamed, leave other doggies a chance.',
-        duration: 10,
-        className: "app-notic",
-        })
+           return message.warning({
+        content:'Already claimed, leave other doggies a chance.',
+         ...message_config
+      })
+        // return notification.warning({
+        // message: "",
+        // description: 'Already gamed, leave other doggies a chance.',
+        // duration: 10,
+        // className: "app-notic",
+        // })
       }
       setLoading({
         ...loading,
@@ -225,18 +276,22 @@ export default () => {
       </div>
       <div className='game-header'>
       
-        <div className="banlance-content">
-          
-             {/* {banlances.map(title => { 
-              return  <h3 className='font-title title'>
-                <div>{ title}:</div>
-               <div className='value'>{Number(banlance)?.toLocaleString()}</div>
+        <div className="banlance-content ">
+          {banlances.map(title => { 
+            let banlance_value = mintBanlance;
+            if (title === 'Lottery') {
+              banlance_value = lotteryBanlance
+            } else if (title === 'Referral') { 
+              banlance_value=ReferralBanlance
+            }
+            return <h3 className='banlance_item' key={ title}>
+                <div className="banlance_item_title">{title}</div>
+               <div className='banlance_item_value'>{Number(banlance_value)?.toLocaleString()}</div>
             </h3>
-             })} */}
-           <h3 className='font-title title'>
-           <div>Balance:</div>
-          <div className='value'>{Number(banlance)?.toLocaleString()}</div>
-          <Tranfe />
+             })} 
+            <h3 className='font-title title banlance_item'>
+           <div className="banlance-title banlance_item_title">Balance <Tranfe /></div>
+          <div className='value banlance_item_value'>{Number(banlance)?.toLocaleString()}</div>
         </h3>
          
         </div>
@@ -261,9 +316,8 @@ export default () => {
                 <div className='input-label'>
                   <div>
                     {item.label}
-                    { item.key === 'game' && start&&<span className="start-time">* start 10:30</span>}
+                    { item.key === 'game' && !start &&<span className="start-time">*begins March 28 15:14:00 UTC</span>}
                   </div>
-                 
                 
                   <Input
                     value={item.title === "Mint" ? mint : game}

@@ -6,7 +6,8 @@ import { MyContext } from "@/pages/content";
 import fa from "@glif/filecoin-address";
 import ShareLink from 'react-twitter-share-link'
 
-import { notification } from "antd";
+import {  message } from "antd";
+import { message_config_success } from '@/constant'
 import { useContext } from "react";
 
 enum CoinType {
@@ -29,12 +30,16 @@ export default () => {
 
   const copyShareLink = () => {
     copy(shareUrl);
-     notification.warning({
-        message: "",
-        description: 'Link copied!',
-        duration: 10,
-        className: "app-notic",
+      message.success({
+        content: 'Link copied!',
+        ...message_config_success
       })
+    //  notification.warning({
+    //     message: "",
+    //     description: 'Link copied!',
+    //     duration: 10,
+    //     className: "app-notic",
+    //   })
   };
   //href={shareTwiter} 
   return (

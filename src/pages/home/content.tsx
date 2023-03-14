@@ -1,36 +1,16 @@
 /** @format */
 import { home_content, content_text } from "@/constant";
-import dog_1 from "@/assets/1-4.png";
-import dog_2 from "@/assets/1-5.png";
+import dog_1 from "@/assets/1-1.png";
+import dog_2 from "@/assets/1-2.png";
 import "./style.scss";
 import { useEffect, useRef, useState } from "react";
 import phone from "@/assets/phone.webp";
 import treat from '@/assets/treat.png';
-import treat_a from '@/assets/treat_a.png';
 
 export default () => {
   const chartRef = useRef<HTMLDivElement>(null);
   const [active, setActive] = useState("introduce-1");
 
-  // useEffect(() => {
-  //   if (chartRef && chartRef.current) {
-  //     chartRef.current.scrollTop = 0;
-  //   }
-  //   const anims: any = document.getAnimations();
-
-  //   anims.forEach((anim: any, index: number) => {
-  //     anim.addEventListener("finish", (event: any) => {
-  //       //console.log(event);
-
-  //       if (anim.animationName === "moveLeft") {
-  //         const dom = document.querySelector(`#container-${index}`);
-  //         if (chartRef && chartRef.current) {
-  //           chartRef.current.scrollTop = chartRef.current.scrollTop + 50;
-  //         }
-  //       }
-  //     });
-  //   });
-  // }, []);
 
   useEffect(() => {
     loadContent(2);

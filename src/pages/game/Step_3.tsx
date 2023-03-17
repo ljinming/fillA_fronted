@@ -73,7 +73,7 @@ export default () => {
         </div>
         <div className='item'>
           <img className='img' src={Twitter} />
-          <ShareLink link={shareUrl} text={shareTitle } hashtags={['$FID','FilaDoge']}  related={['FilaDoge']}> 
+          <ShareLink link={shareUrl} text={shareTitle } hashtags={['FID','FilaDoge']}  related={['FilaDoge']}> 
             {(shareUrl: string | undefined) => (
                 <a href={shareUrl} className='twitter' target='_blank'>Share Twiter</a>
             )}

@@ -68,6 +68,7 @@ export default () => {
         <div className='calc-box'>
           <span className='Address'>0x address:</span>
           <Input
+            value={input}
             onChange={(e: any) => setInput(e.target.value)}
             placeholder='Please enter the 0x address'
           />

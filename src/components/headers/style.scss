@@ -34,6 +34,25 @@
     }
     
 }
+.wallet{
+  
+    .wallet-connect{
+        display: flex;
+        align-items: center;
+    }
+    &-banlance{
+            display: flex;
+            align-items: center;
+            column-gap: 10px;
+            margin-left: 20px;
+            color: rgba(0, 0, 0, 0.45);
+            margin-left: 10px;
+        .value{
+            color: #FF6633;
+        }
+    }
+}
+
 
 
 @media screen and (max-width: 800px) {

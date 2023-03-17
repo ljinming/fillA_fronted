@@ -17,17 +17,19 @@ export default () => {
       key: "1",
       label: `Mint`,
       children: <Mint />,
+      
+    },
+      {
+      key: "3",
+      label: `Referral`,
+      children: <Referral />,
     },
     {
       key: "2",
       label: `Lottery`,
       children: <Lottery />,
     },
-    {
-      key: "3",
-      label: `Referral`,
-      children: <Referral />,
-    },
+  
   ];
 
   return (

@@ -10,8 +10,8 @@ export default () => {
       <div className='home_header_content'>
         <img className="title_img" src={title} alt="" />
         <div className='font-wrap'>
-          <div>First open-source peer-to-peer digital meme-token </div>
-          <div>on Filecoin Virtual Machine</div>
+          <div>FilaDoge is the first user-programmed actor </div>
+          <div>on Filecoin network.</div>
         </div>
       </div>
     </div>

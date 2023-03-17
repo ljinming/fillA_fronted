@@ -85,3 +85,9 @@ totalSupply：ERC-20，输出总发行量
         }
     }
 }
+
+
+1，合约地址
+2， chainId 
+
+//0x5c045cfafe8387a98eccacaccd24b852e95624ee

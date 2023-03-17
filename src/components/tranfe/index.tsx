@@ -4,23 +4,33 @@ import { useState } from "react";
 import { Button } from "antd";
 import fa from "@glif/filecoin-address";
 import Web3 from "@/server/Web3";
+import { LoadingOutlined } from "@ant-design/icons";
 import { swapSvg,warningIcon } from "@/svgIcons";
 import { message_config } from '@/constant'
 import "./style.scss";
+import { debounce } from '@/utils'
+interface Props { 
+  onChange:()=>void
+}
 
-export default () => {
+export default (props: Props) => {
+  const { onChange } = props
   const [show, setShow] = useState(false);
   const [showAddress, setShowAddress] = useState("");
-  const [amount,setAmount] = useState<number|any>();
+  const [amount, setAmount] = useState<number | any>();
+  const [loading,setLoading] = useState(false)
 
   enum CoinType {
     MAIN = "f",
     TEST = "t",
   }
 
-    const handleChange = async () => {
-            const isNetwork = await Web3.getNetWork()
-
+  const handleChange = async () => {
+    console.log('----4')
+    if (loading) { 
+      return ''
+    }
+        const isNetwork = await Web3.getNetWork()
         if (!isNetwork) { 
               return  notification.warning({
             message: "",
@@ -32,9 +42,13 @@ export default () => {
         }
     //change address
       if (showAddress.startsWith('f4') && fa.checkAddressString(showAddress)) { 
+        const address = fa.ethAddressFromDelegated(showAddress);
+            setLoading(true)
 
-          const address = fa.ethAddressFromDelegated(showAddress);
-        Web3.transfer(address,amount)
+        Web3.transfer(address, amount).then((res) => { 
+              setLoading(false)
+          onChange()
+        })
       } else {
              message.warning({
                     content:`It doesn't smell like an f4 address!`,
@@ -73,8 +87,8 @@ export default () => {
           />
         </div>
         <div className='calc-box box'>
-          <Button className='connect-btn btn' onClick={handleChange}>
-            Send
+          <Button className='connect-btn btn' onClick={debounce(handleChange,3000,true)}>
+            {loading ? <LoadingOutlined /> : 'Send'}
           </Button>
         </div>
       </Modal>

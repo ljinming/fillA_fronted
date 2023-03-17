@@ -9,9 +9,9 @@ import champion from "@/assets/champion.png";
 import runnerup from "@/assets/runnerup.png";
 import { twitter, medium } from "./svgIcons";
 import { FormOutlined } from '@ant-design/icons';
-import { warningIcon ,successIcon} from '@/svgIcons'
+import { warningIcon ,successIcon,githup} from '@/svgIcons'
 
-export const FilaDogeContract = "0x70c31e973522D702d200C04644F341cEC22dccAD";
+export const FilaDogeContract = "0x7B90337f65fAA2B2B8ed583ba1Ba6EB0C9D7eA44";
 
 export const home_content = [
   
@@ -118,7 +118,7 @@ export const content_text = [
     text: (
       <div>
         Win a lottery and claim any random amount from 10,000 to 1,000,000 FLD,
-        space limited! Allocate up to 10% of total supply.
+        space limited! Allocate up to 20% of total supply.
       </div>
     ),
   },
@@ -128,8 +128,8 @@ export const content_text = [
     key: "Referral-3",
     text: (
       <div>
-        Share your fun and luck along with the distinct referral link to your.
-        social media crowd, each successful referral2 will earn you 400,000 FLD.
+        Share your fun and luck along with the distinct referral link to your
+        social media crowd, each successful referral will earn you 400,000 FLD.
         Allocate up to 20% of total FLD supply.
       </div>
     ),
@@ -174,6 +174,11 @@ export const links = [
     text: "Medium",
     link: "https://medium.com/@filadoge",
     icon:medium,
+  },
+   {
+    text: "githup",
+    link: "https://github.com/filadogedev/FilaDoge",
+     icon: <span>{ githup}</span>
   },
   {
     text: "Community",

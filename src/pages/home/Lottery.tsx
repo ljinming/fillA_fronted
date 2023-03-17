@@ -37,6 +37,6 @@ export default () => {
       }
      
       columns={columns}
-      dataSource={data.length > 50 ? data.slice(0, 50) : data}></Table>
+      dataSource={data}></Table>
   );
 };

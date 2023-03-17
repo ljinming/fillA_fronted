@@ -7,7 +7,7 @@ import { getValueDivide ,getValueMultiplied} from "@/utils";
 import Web3 from "web3";
 import { notification } from "antd";
 import { successIcon,warningIcon } from '@/svgIcons'
-
+import store from './modules'
 //import { ethers } from 'ethers';
 
 const web3 = new Web3(window.ethereum);
@@ -68,7 +68,11 @@ class contract {
       this.myContract.methods
         .balanceOf(account)
         .call({ form: this.account }, (err: any, res: any) => {
-          const number = getValueDivide(Number(res), 18, 0);
+          const number = getValueDivide(Number(res), 18, 2);
+           store.dispatch({
+                  type: 'banlance/change',
+                  payload: {banlance:number}
+                  })                          
           resolve(number);
         });
     });
@@ -80,7 +84,7 @@ class contract {
       this.myContract.methods
         .inviteeRewardReceived(account)
         .call({ form: this.account }, (err: any, res: any) => {
-          const number = getValueDivide(Number(res), 18, 0);
+          const number = getValueDivide(Number(res), 18, 2);
           resolve(number);
         });
     });
@@ -92,7 +96,7 @@ class contract {
       this.myContract.methods
         .gamblerRewardReceived(account)
         .call({ form: this.account }, (err: any, res: any) => {
-          const number = getValueDivide(Number(res), 18, 0);
+          const number = getValueDivide(Number(res), 18, 2);
           resolve(number);
         });
     });
@@ -104,7 +108,7 @@ class contract {
       this.myContract.methods
         .inviterRewardReceived(account)
         .call({ form: this.account }, (err: any, res: any) => {
-          const number = getValueDivide(Number(res), 18, 0);
+          const number = getValueDivide(Number(res), 18, 2);
           resolve(number);
         });
     });
@@ -113,12 +117,18 @@ class contract {
 
   transfer(address: string, amount: number) { 
     const value = getValueMultiplied(Number(amount));
-    web3.eth.sendTransaction({
+    return new Promise((resolve,reject) => { 
+         web3.eth.sendTransaction({
       from: this.account,
       to: address,
        value,
-    }, () => { }).then(function(receipt){
+         }, (err, any) => { 
+           if (err) { 
+             resolve(true)
+           }
+    }).then(function(receipt){
       //console.log('=receipt===5', receipt)
+      resolve(true)
        notification.success({
             message: "",
             description: `Transaction Successfully `,
@@ -127,25 +137,8 @@ class contract {
              icon: <span className="notification-icon" >{ successIcon}</span>
           });
       });
-
-    // this.myContract.methods.transfer(address, value).send({
-    //   from: this.account,
-    //   value: value,
-    //   to:address
-    // }, () => { }).on("receipt", (data: any) => {
-    //       console.log('-transfer---44',data)
-    //       const returnValue = data?.events?.Transfer?.returnValues || {};
-    //       const num = returnValue.value
-    //         ? getValueDivide(Number(returnValue.value), 18, 0)
-    //         : "";
-    //       console.log("receipt", data);
-    //       notification.success({
-    //         message: "Mint",
-    //         description: `Congratulate, You got ${num} FLD`,
-    //         duration: 10,
-    //         className: "app-notic",
-    //       });
-    //     })
+    })
+   
   }
 
   hasBeenInvited(account:string) {
@@ -273,6 +266,7 @@ class contract {
       );
     });
   }
+
   rank_Table(type: string) {
     const menthod =
       type === "lottery" ? "hasRewardedGamblerList" : "hasRewardedInviterList";
@@ -296,7 +290,7 @@ class contract {
             return  Number(b.amount)-Number(a.amount);
           });
           const showData = data.length > 50 ? data.slice(0, 50) : data;
-          const newData = [...showData,...showData,...showData].map((t:any,index:number) => { 
+          const newData = [...showData].map((t:any,index:number) => { 
             return {...t,sortIndex:index}
           })
           resolve(newData);

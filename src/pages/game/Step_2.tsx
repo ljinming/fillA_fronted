@@ -11,7 +11,6 @@ import { LoadingOutlined } from "@ant-design/icons";
 import { message_config } from '@/constant'
 import { warningIcon } from '@/svgIcons'
 
-
 const banlances =[ 'Mint', 'Lottery', 'Referral'];
 
 export default () => {
@@ -43,7 +42,7 @@ export default () => {
     }
   }, [context?.account]);
 
-  const getbBanlance=(account:string)=>{ 
+  const getbBanlance=(account:string = context.account)=>{ 
       Web3.getBalance(account).then((res: number | string) => {
       setBanlance(res);
       });
@@ -74,6 +73,7 @@ export default () => {
   };
 
   const handleClick = async (type: string) => {
+    console.log('----4')
     if (!context?.account) {
      return message.warning({
         content: 'Doggy wants to chase foxy, please connect your wallet!',
@@ -182,22 +182,21 @@ export default () => {
 
     if (type === "mint") {
       if (showMint.mint) {
-           return message.warning({
+         return message.warning({
         content:'Already claimed, leave other doggies a chance.',
          ...message_config
       })
-      //    return notification.warning({
-      //   message: "",
-      //   description: 'Already claimed, leave other doggies a chance.',
-      //   duration: 10,
-      //   className: "app-notic",
-      // })
+     
       }
+
+     
       setLoading({
         ...loading,
         mint: true,
       });
-      Web3.mint(invited,accountValue).then((res) => {
+      
+      Web3.mint(invited, accountValue).then((res) => {
+        getbBanlance(context.account)
         setLoading({
           ...loading,
           mint: false,
@@ -216,15 +215,14 @@ export default () => {
         // className: "app-notic",
         // })
       }
+      
       setLoading({
         ...loading,
         game: true,
       });
 
       Web3.lottery(invited,accountValue).then((res) => {
-        if (res) {
-          getbBanlance(context.account)
-        }
+        getbBanlance(context.account)
         setLoading({
           ...loading,
           game: false,
@@ -290,7 +288,10 @@ export default () => {
             </h3>
              })} 
             <h3 className='font-title title banlance_item'>
-           <div className="banlance-title banlance_item_title">Balance <Tranfe /></div>
+            <div className="banlance-title banlance_item_title">Balance <Tranfe onChange={() => { 
+              //tranfe success
+              getbBanlance()
+            }}/></div>
           <div className='value banlance_item_value'>{Number(banlance)?.toLocaleString()}</div>
         </h3>
          
@@ -341,7 +342,7 @@ export default () => {
                   if (item.key === 'game' && !start) { 
                     return
                   }
-                   handleClick(item.key)
+                 handleClick(item.key)
                 }}>
                 {loading[item.key] ? <LoadingOutlined /> : item.btnText}
               </div>

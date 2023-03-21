@@ -61,7 +61,7 @@ export default () => {
           />
           </Button>
           <div className="wallet-banlance">
-            Banlance:
+            Balance:
             <span className="value">{Number(banlance).toLocaleString()}</span>
             <Tranfe onChange={() => {
               getBanlance(account)

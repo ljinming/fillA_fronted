@@ -1,6 +1,6 @@
 /** @format */
 import { Modal, Input,notification, message } from "antd";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { Button } from "antd";
 import fa from "@glif/filecoin-address";
 import Web3 from "@/server/Web3";
@@ -10,16 +10,19 @@ import { message_config } from '@/constant'
 import "./style.scss";
 import { debounce } from '@/utils'
 import FethContract from "@/server/DataFetcher";
+import { MyContext } from "@/pages/content";
+
 interface Props { 
   onChange?:()=>void
 }
 
 export default (props: Props) => {
-  const { onChange } = props
   const [show, setShow] = useState(false);
   const [showAddress, setShowAddress] = useState("");
   const [amount, setAmount] = useState<number | any>();
-  const [loading,setLoading] = useState(false)
+  const [loading, setLoading] = useState(false)
+    const context = useContext<any>(MyContext);
+
 
   enum CoinType {
     MAIN = "f",
@@ -36,6 +39,12 @@ export default (props: Props) => {
     if (loading) { 
       return ''
     }
+    if (!context.account) { 
+         message.warning({
+                    content:`Please connect wallet `,
+                    ...message_config
+                  })
+    }
         const isNetwork = await Web3.getNetWork()
         if (!isNetwork) { 
               return  notification.warning({
@@ -49,11 +58,14 @@ export default (props: Props) => {
     //change address
       if (showAddress.startsWith('f4') && fa.checkAddressString(showAddress)) { 
         const address = fa.ethAddressFromDelegated(showAddress);
-            setLoading(true)
-        Web3.transfer(address, amount).then((res) => { 
+          setLoading(true)
+        Web3.transfer(address, amount,context.account).then((res) => { 
           setLoading(false)
           // tranf succeeded
-          getBanlance()
+          if (res) { 
+            getBanlance()
+          }
+          
         })
       } else {
              message.warning({
@@ -95,3 +107,5 @@ export default (props: Props) => {
     </div>
   );
 };
+
+

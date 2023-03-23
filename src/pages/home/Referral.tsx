@@ -14,7 +14,7 @@ export default () => {
    );
   
   const data = useMemo(() => {
-    return HasRewardedInviterList.filter((v:any)=>v?.Account!== ('0x0000000000000000000000000000000000000000'))
+    return HasRewardedInviterList?.filter((v:any)=>v?.Account!== ('0x0000000000000000000000000000000000000000'))||[]
    },[HasRewardedInviterList])
   
   return (

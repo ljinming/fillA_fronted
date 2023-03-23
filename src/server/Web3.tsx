@@ -116,35 +116,41 @@ class contract {
   // }
 
 
-  transfer(address: string, amount: number) { 
+  transfer(address: string, amount: number,account:string) { 
     const value = getValueMultiplied(Number(amount));
     return new Promise((resolve, reject) => { 
       this.myContract.methods.transfer(address,value).send({
-        from: this.account,
-        to: address,
-        value
-      }, (err:any, res:any) => {
-        console.log('----65768',err,res)
-       }).then(function(receipt:any){
-    //      web3.eth.sendTransaction({
-    //   from: this.account,
-    //   to: address,
-    //    value,
-    //      }, (err, any) => { 
-    //        if (err) { 
-    //          resolve(true)
-    //        }
-    // }).then(function(receipt){
-      console.log('=receipt===5', receipt)
-      resolve(true)
-       notification.success({
+        from:account,
+        
+      }, (err: any, res: any) => {
+         console.log("--3", err, res);
+      }).on("receipt", (data: any) => {
+          resolve(true);
+          notification.success({
             message: "",
             description: `Transaction Successfully `,
             duration: 10,
             className: "app-notic",
              icon: <span className="notification-icon" >{ successIcon}</span>
           });
-      });
+        })
+        .on("error", (err: any) => {
+          resolve(false);
+          const messageData = err?.error?.data?.message ;
+          let messages = 'Fox has rejected doggy’s transaction!'
+          if (messageData) {
+            const [a, text] = messageData.split("(");
+            const b = text.split(")");
+            messages = b[0];
+          }
+          notification.warning({
+            message: "",
+            description: messages,
+            duration: 10,
+            className: "app-notic",
+             icon: <span className="notification-icon" >{ warningIcon}</span>
+          });
+        });;
     })
    
   }

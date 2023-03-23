@@ -91,3 +91,8 @@ totalSupply：ERC-20，输出总发行量
 2， chainId 
 
 //0x5c045cfafe8387a98eccacaccd24b852e95624ee
+
+
+ location /api/ {
+        proxy_pass http://47.88.25.203:8001/;
+        }

@@ -10,11 +10,11 @@ import treat from '@/assets/treat.png';
 export default () => {
   const chartRef = useRef<HTMLDivElement>(null);
   const [active, setActive] = useState("introduce-1");
-
-
   useEffect(() => {
     loadContent(2);
   }, []);
+
+
 
   const loadContent = (index: number) => {
     const item = document.getElementById(`container-${index}`);

@@ -9,6 +9,15 @@ export default defineConfig({
   build: {
     outDir:'build'
   },
+    server: {
+    proxy: {
+      "/api": {
+        target: "http://47.88.25.203:8001",
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/api/, ""),
+      },
+    },
+  },
   plugins: [react()],
      optimizeDeps: {
         esbuildOptions: {

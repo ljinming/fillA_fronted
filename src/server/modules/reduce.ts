@@ -8,7 +8,18 @@ import { createSlice } from "@reduxjs/toolkit";
   reducers: {
     change: (state: any, action: any) => {
       let newState = { ...state, ...action.payload };
-      console.log('===4',newState)
+      return newState;
+    },
+  },
+});
+
+
+ const homeRankSlice = createSlice({
+   name: "home_rank",
+   initialState: {},
+  reducers: {
+    change: (state: any, action: any) => {
+      let newState = action.payload;
       return newState;
     },
   },
@@ -17,9 +28,9 @@ import { createSlice } from "@reduxjs/toolkit";
 
 
 
-
+const homeRankReducer = homeRankSlice.reducer;
 
  const banlanceReducer = banlanceSlice.reducer;
 
 
-export  {banlanceReducer}
+export  {banlanceReducer,homeRankReducer}

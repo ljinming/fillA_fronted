@@ -9,8 +9,9 @@ import { swapSvg,warningIcon } from "@/svgIcons";
 import { message_config } from '@/constant'
 import "./style.scss";
 import { debounce } from '@/utils'
+import FethContract from "@/server/DataFetcher";
 interface Props { 
-  onChange:()=>void
+  onChange?:()=>void
 }
 
 export default (props: Props) => {
@@ -25,8 +26,13 @@ export default (props: Props) => {
     TEST = "t",
   }
 
+    const getBanlance = () => { 
+    FethContract.fetchBalance().then((res: any) => { 
+     // setBanlance(res.banlance);
+    })
+  }
+
   const handleChange = async () => {
-    console.log('----4')
     if (loading) { 
       return ''
     }
@@ -44,22 +50,16 @@ export default (props: Props) => {
       if (showAddress.startsWith('f4') && fa.checkAddressString(showAddress)) { 
         const address = fa.ethAddressFromDelegated(showAddress);
             setLoading(true)
-
         Web3.transfer(address, amount).then((res) => { 
-              setLoading(false)
-          onChange()
+          setLoading(false)
+          // tranf succeeded
+          getBanlance()
         })
       } else {
              message.warning({
                     content:`It doesn't smell like an f4 address!`,
                     ...message_config
                   })
-    //       notification.warning({
-    //     message: "",
-    //     description: `It doesn't smell like an f4 address!`,
-    //     duration: 10,
-    //     className: "app-notic",
-    //   })
       }
   };
   return (

@@ -1,8 +1,8 @@
 import { configureStore } from '@reduxjs/toolkit';
-import { banlanceReducer} from './reduce'
+import { banlanceReducer,homeRankReducer} from './reduce'
 export default configureStore({
     reducer:{
         banlance: banlanceReducer,
-     
+        home_rank:homeRankReducer
     }
 })

@@ -10,6 +10,7 @@ import { successIcon,warningIcon } from '@/svgIcons'
 import store from './modules'
 //import { ethers } from 'ethers';
 
+
 const web3 = new Web3(window.ethereum);
 //const request= util.promisify(requests);
 // const provider = new ethers.providers.Web3Provider(window.ethereum)
@@ -62,72 +63,79 @@ class contract {
    
   }
 
-  async getBalance(account: string): Promise<number | string> {
-    this.account = account;
-    return new Promise<number | string>((resolve, reject) => {
-      this.myContract.methods
-        .balanceOf(account)
-        .call({ form: this.account }, (err: any, res: any) => {
-          const number = getValueDivide(Number(res), 18, 2);
-           store.dispatch({
-                  type: 'banlance/change',
-                  payload: {banlance:number}
-                  })                          
-          resolve(number);
-        });
-    });
-  }
+  // async getBalance(account: string): Promise<number | string> {
+  //   this.account = account;
+  //   return new Promise<number | string>((resolve, reject) => {
+  //     this.myContract.methods
+  //       .balanceOf(account)
+  //       .call({ form: this.account }, (err: any, res: any) => {
+  //         const number = getValueDivide(Number(res), 18, 2);
+  //          store.dispatch({
+  //                 type: 'banlance/change',
+  //                 payload: {banlance:number}
+  //                 })                          
+  //         resolve(number);
+  //       });
+  //   });
+  // }
 
-   async MintBanlance(account: string): Promise<number | string> {
-    this.account = account;
-    return new Promise<number | string>((resolve, reject) => {
-      this.myContract.methods
-        .inviteeRewardReceived(account)
-        .call({ form: this.account }, (err: any, res: any) => {
-          const number = getValueDivide(Number(res), 18, 2);
-          resolve(number);
-        });
-    });
-   }
+  //  async MintBanlance(account: string): Promise<number | string> {
+  //   this.account = account;
+  //   return new Promise<number | string>((resolve, reject) => {
+  //     this.myContract.methods
+  //       .inviteeRewardReceived(account)
+  //       .call({ form: this.account }, (err: any, res: any) => {
+  //         const number = getValueDivide(Number(res), 18, 2);
+  //         resolve(number);
+  //       });
+  //   });
+  //  }
   
-    async LotteryBanlance(account: string): Promise<number | string> {
-    this.account = account;
-    return new Promise<number | string>((resolve, reject) => {
-      this.myContract.methods
-        .gamblerRewardReceived(account)
-        .call({ form: this.account }, (err: any, res: any) => {
-          const number = getValueDivide(Number(res), 18, 2);
-          resolve(number);
-        });
-    });
-    }
+  //   async LotteryBanlance(account: string): Promise<number | string> {
+  //   this.account = account;
+  //   return new Promise<number | string>((resolve, reject) => {
+  //     this.myContract.methods
+  //       .gamblerRewardReceived(account)
+  //       .call({ form: this.account }, (err: any, res: any) => {
+  //         const number = getValueDivide(Number(res), 18, 2);
+  //         resolve(number);
+  //       });
+  //   });
+  //   }
   
-    async ReferBanlance(account: string): Promise<number | string> {
-    this.account = account;
-    return new Promise<number | string>((resolve, reject) => {
-      this.myContract.methods
-        .inviterRewardReceived(account)
-        .call({ form: this.account }, (err: any, res: any) => {
-          const number = getValueDivide(Number(res), 18, 2);
-          resolve(number);
-        });
-    });
-  }
+  //   async ReferBanlance(account: string): Promise<number | string> {
+  //   this.account = account;
+  //   return new Promise<number | string>((resolve, reject) => {
+  //     this.myContract.methods
+  //       .inviterRewardReceived(account)
+  //       .call({ form: this.account }, (err: any, res: any) => {
+  //         const number = getValueDivide(Number(res), 18, 2);
+  //         resolve(number);
+  //       });
+  //   });
+  // }
 
 
   transfer(address: string, amount: number) { 
     const value = getValueMultiplied(Number(amount));
-    return new Promise((resolve,reject) => { 
-         web3.eth.sendTransaction({
-      from: this.account,
-      to: address,
-       value,
-         }, (err, any) => { 
-           if (err) { 
-             resolve(true)
-           }
-    }).then(function(receipt){
-      //console.log('=receipt===5', receipt)
+    return new Promise((resolve, reject) => { 
+      this.myContract.methods.transfer(address,value).send({
+        from: this.account,
+        to: address,
+        value
+      }, (err:any, res:any) => {
+        console.log('----65768',err,res)
+       }).then(function(receipt:any){
+    //      web3.eth.sendTransaction({
+    //   from: this.account,
+    //   to: address,
+    //    value,
+    //      }, (err, any) => { 
+    //        if (err) { 
+    //          resolve(true)
+    //        }
+    // }).then(function(receipt){
+      console.log('=receipt===5', receipt)
       resolve(true)
        notification.success({
             message: "",
@@ -248,56 +256,57 @@ class contract {
     });
   }
 
-  rank_mint(type: string) {
-    const menthod =
-      type === "claimed"
-        ? "hasRewardedInviteeAmount"
-        : type === "participants"
-        ? "hasRewardedInvitees"
-        : "nextInviteeReward";
-    return new Promise<string | number>((resolve, reject) => {
-      this.myContract.methods[menthod]().call(
-        { form: this.account },
-        (err: any, res: any) => {
-          const number =
-            type === "participants" ? res : getValueDivide(Number(res), 18, 0);
-          resolve(number);
-        }
-      );
-    });
-  }
+  // rank_mint(type: string) {
+  //   const menthod =
+  //     type === "claimed"
+  //       ? "hasRewardedInviteeAmount"
+  //       : type === "participants"
+  //       ? "hasRewardedInvitees"
+  //       : "nextInviteeReward";
+  //   return new Promise<string | number>((resolve, reject) => {
+  //     this.myContract.methods[menthod]().call(
+  //       { form: this.account },
+  //       (err: any, res: any) => {
+  //         const number =
+  //           type === "participants" ? res : getValueDivide(Number(res), 18, 0);
+  //         resolve(number);
+  //       }
+  //     );
+  //   });
+  // }
 
-  rank_Table(type: string) {
-    const menthod =
-      type === "lottery" ? "hasRewardedGamblerList" : "hasRewardedInviterList";
-    return new Promise<Array<any>>((resolve, reject) => {
-      this.myContract.methods[menthod]().call(
-        { form: this.account },
-        (err: any, res: any) => {
-          const data: any = [];
-          res?.forEach((v: any) => {
-            const { account, amount } = v;
-            if (account !== '0x0000000000000000000000000000000000000000') { 
-            data.push({
-              account,
-              f4Address: fa.delegatedFromEthAddress(account,CoinType.MAIN).toString(),
-              amount: getValueDivide(Number(amount), 18, 0),
-            });
-            }
+  // rank_Table(type: string) {
+  //   const menthod =
+  //     type === "lottery" ? "hasRewardedGamblerList" : "hasRewardedInviterList";
+  //   return new Promise<Array<any>>((resolve, reject) => {
+  //     this.myContract.methods[menthod]().call(
+  //       { form: this.account },
+  //       (err: any, res: any) => {
+  //         const data: any = [];
+  //         res?.forEach((v: any) => {
+  //           const { account, amount } = v;
+  //           if (account !== '0x0000000000000000000000000000000000000000') { 
+  //           data.push({
+  //             account,
+  //             f4Address: fa.delegatedFromEthAddress(account,CoinType.MAIN).toString(),
+  //             amount: getValueDivide(Number(amount), 18, 0),
+  //           });
+  //           }
          
-          });
-          data.sort((a: any, b: any) => {
-            return  Number(b.amount)-Number(a.amount);
-          });
-          const showData = data.length > 50 ? data.slice(0, 50) : data;
-          const newData = [...showData].map((t:any,index:number) => { 
-            return {...t,sortIndex:index}
-          })
-          resolve(newData);
-        }
-      );
-    });
-  }
+  //         });
+  //         data.sort((a: any, b: any) => {
+  //           return  Number(b.amount)-Number(a.amount);
+  //         });
+  //         const showData = data.length > 50 ? data.slice(0, 50) : data;
+  //         const newData = [...showData].map((t:any,index:number) => { 
+  //           return {...t,sortIndex:index}
+  //         })
+  //         resolve(newData);
+  //       }
+  //     );
+  //   });
+  // }
 }
 const FilaContract = new contract();
+
 export default FilaContract;

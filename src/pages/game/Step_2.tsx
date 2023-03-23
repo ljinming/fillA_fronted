@@ -10,19 +10,23 @@ import fa from "@glif/filecoin-address";
 import { LoadingOutlined } from "@ant-design/icons";
 import { message_config } from '@/constant'
 import { warningIcon } from '@/svgIcons'
+import { shallowEqual, useSelector } from "react-redux";
+import FethContract from "@/server/DataFetcher";
 
 const banlances =[ 'Mint', 'Lottery', 'Referral'];
 
 export default () => {
   const context = useContext<any>(MyContext);
-  const [banlance, setBanlance] = useState<string | number>(0);
   const [mint, setMint] = useState("");
   const [game, setGame] = useState("");
   const [start, setStart] = useState(true);
-  const [mintBanlance, setMintBanlance] = useState<string | number>(0);
-    const [lotteryBanlance,setLotteryBanlance] = useState<string | number>(0);
-    const [ReferralBanlance,setReferralBanlance] = useState<string | number>(0);
-
+  
+   const { banlance, gamblerRewardReceived, inviteeRewardReceived,inviterRewardReceived } = useSelector(
+    (state: any) => state?.banlance,
+    shallowEqual
+   );
+  
+  
   const [loading, setLoading] = useState<Record<string, boolean>>({
     mint: false,
     game: false,
@@ -36,26 +40,17 @@ export default () => {
   useEffect(() => {
     if (context.account) {
       Web3.setAccount(context.account);
-      getbBanlance(context.account)
       startLottery()
       PreMint(context.account);
     }
   }, [context?.account]);
 
-  const getbBanlance=(account:string = context.account)=>{ 
-      Web3.getBalance(account).then((res: number | string) => {
-      setBanlance(res);
-      });
-    Web3.MintBanlance(account).then((res: number | string) => {
-      setMintBanlance(res);
-    });
-      Web3.LotteryBanlance(account).then((res: number | string) => {
-      setLotteryBanlance(res)
-      });
-      Web3.ReferBanlance(account).then((res: number | string) => {
-      setReferralBanlance(res);
-    });
+    const getBanlance = (account:string) => { 
+      FethContract.fetchBalance(account).then((res: any) => { 
+        console.log('---banlance successfully')
+    })
   }
+
 
   const startLottery = async () => { 
     const res = await Web3.isLotteryStarted()
@@ -73,18 +68,11 @@ export default () => {
   };
 
   const handleClick = async (type: string) => {
-    console.log('----4')
     if (!context?.account) {
      return message.warning({
         content: 'Doggy wants to chase foxy, please connect your wallet!',
         ...message_config
       })
-      // return notification.warning({
-      //   message: "",
-      //   description: 'Doggy wants to chase foxy, please connect your wallet!',
-      //   duration: null,
-      //   className: "app-notic",
-      // })
     }
     const isNetwork = await Web3.getNetWork()
     if (!isNetwork) { 
@@ -107,12 +95,6 @@ export default () => {
         content: 'Invalid invite code!',
         ...message_config
       })
-      // return notification.warning({
-      //   message: "",
-      //   description: 'Invalid invite code!',
-      //   duration: 10,
-      //   className: "app-notic",
-      // })
     }
   
     //value 以f4 地址
@@ -124,12 +106,7 @@ export default () => {
         content:`It doesn't smell like an f4 address!`,
       ...message_config
       })
-      // return notification.warning({
-      //   message: "",
-      //   description: `It doesn't smell like an f4 address!`,
-      //   duration: 10,
-      //   className: "app-notic",
-      // })
+     
     }
 
     let accountValue = type === "mint" ? mint : game;
@@ -139,12 +116,7 @@ export default () => {
         content:'Self-invite is not supported, please ask other doggies to invite you!',
          ...message_config
       })
-      // return notification.warning({
-      //   message: "",
-      //   description: 'Self-invite is not supported, please ask other doggies to invite you!',
-      //   duration: 10,
-      //   className: "app-notic",
-      // })
+      
     }
     if (accountValue && fa.validateAddressString(accountValue)) {
       accountValue = fa.ethAddressFromDelegated(accountValue)
@@ -153,12 +125,7 @@ export default () => {
         content:`It doesn't smell like an f4 address!`,
          ...message_config
       })
-      // return notification.warning({
-      //   message: "",
-      //   description: `It doesn't smell like an f4 address!`,
-      //   duration: 10,
-      //   className: "app-notic",
-      // })
+     
     }
 
     if (accountValue === '0x0000000000000000000000000000000000000000') {
@@ -166,12 +133,7 @@ export default () => {
         content:`It doesn't smell like an f4 address!`,
          ...message_config
       })
-      // return notification.warning({
-      //   message: "",
-      //   description:  `It doesn't smell like an f4 address!`,
-      //   duration: 10,
-      //   className: "app-notic",
-      // })
+     
     }
 
     invited = fa.ethAddressFromDelegated(invited)
@@ -196,7 +158,7 @@ export default () => {
       });
       
       Web3.mint(invited, accountValue).then((res) => {
-        getbBanlance(context.account)
+        getBanlance(context.account)
         setLoading({
           ...loading,
           mint: false,
@@ -208,12 +170,6 @@ export default () => {
         content:'Already claimed, leave other doggies a chance.',
          ...message_config
       })
-        // return notification.warning({
-        // message: "",
-        // description: 'Already gamed, leave other doggies a chance.',
-        // duration: 10,
-        // className: "app-notic",
-        // })
       }
       
       setLoading({
@@ -222,7 +178,7 @@ export default () => {
       });
 
       Web3.lottery(invited,accountValue).then((res) => {
-        getbBanlance(context.account)
+        getBanlance(context.account)
         setLoading({
           ...loading,
           game: false,
@@ -276,11 +232,11 @@ export default () => {
       
         <div className="banlance-content ">
           {banlances.map(title => { 
-            let banlance_value = mintBanlance;
+            let banlance_value = inviteeRewardReceived;
             if (title === 'Lottery') {
-              banlance_value = lotteryBanlance
+              banlance_value = gamblerRewardReceived
             } else if (title === 'Referral') { 
-              banlance_value=ReferralBanlance
+              banlance_value=inviterRewardReceived
             }
             return <h3 className='banlance_item' key={ title}>
                 <div className="banlance_item_title">{title}</div>
@@ -288,10 +244,7 @@ export default () => {
             </h3>
              })} 
             <h3 className='font-title title banlance_item'>
-            <div className="banlance-title banlance_item_title">Balance <Tranfe onChange={() => { 
-              //tranfe success
-              getbBanlance()
-            }}/></div>
+            <div className="banlance-title banlance_item_title">Balance <Tranfe /></div>
           <div className='value banlance_item_value'>{Number(banlance)?.toLocaleString()}</div>
         </h3>
          

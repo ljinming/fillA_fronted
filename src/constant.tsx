@@ -8,11 +8,19 @@ import thirdrunner from "@/assets/thirdrunner.png";
 import champion from "@/assets/champion.png";
 import runnerup from "@/assets/runnerup.png";
 import { twitter, medium } from "./svgIcons";
+import fa from "@glif/filecoin-address";
 import { FormOutlined } from '@ant-design/icons';
-import { warningIcon ,successIcon,githup} from '@/svgIcons'
+import { warningIcon, successIcon, githup } from '@/svgIcons';
+
 
 export const FilaDogeContract = "0x7B90337f65fAA2B2B8ed583ba1Ba6EB0C9D7eA44";
+export const DataFetcherContract = "0xB92e8C60D92C46feb7903A41D2b850F6A7e00e69"
 
+ enum CoinType {
+    MAIN = "f",
+    TEST = "t",
+ }
+  
 export const home_content = [
   
     {
@@ -142,26 +150,32 @@ export const columns: any = [
     dataIndex: "sortIndex",
     align: "center",
     title: "Ranking",
-    render: (text: any) => {
+    render: (text: any, Recor: any, index: any) => {
+      console.log('----46',index)
       const url =
-        text === 0
+        index === 0
           ? champion
-          : text === 1
+          : index === 1
           ? runnerup
-          : text === 2
+          : index === 2
           ? thirdrunner
           : "";
-      return text < 3 ? <img src={url} className='rank-icon' /> : text + 1;
+      return index < 3 ? <img src={url} className='rank-icon' /> : index + 1;
     },
   },
 
-  { dataIndex: "account", title: "Address" },
-  { dataIndex: "f4Address", title: "f4 Address" },
+  { dataIndex: "Account", title: "Address" },
   {
-    dataIndex: "amount", title: "Rewards", render: (v:number|string) => { 
-                return Number(v).toLocaleString()
+    dataIndex: "Account", title: "f4 Address", render: (text:string) => { 
+      return <div>{  fa.delegatedFromEthAddress(text,CoinType.MAIN).toString()}</div>
+  }},
+  {
+    dataIndex: "Amount", title: "Rewards",
+    // render: (v: number | string) => { 
+    //             return Number(v).toLocaleString()
 
-  } },
+    // }
+  },
 ];
 
 export const links = [

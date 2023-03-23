@@ -1,0 +1,198 @@
+{
+	"compiler": {
+		"version": "0.8.18+commit.87f61d96"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "filaAddr",
+						"type": "address"
+					}
+				],
+				"stateMutability": "nonpayable",
+				"type": "constructor"
+			},
+			{
+				"inputs": [],
+				"name": "fetchData",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "blockHeight",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "blockTimeStamp",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "nextInviteeReward",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "hasRewardedInviteeAmount",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "hasRewardedInvitees",
+						"type": "uint256"
+					},
+					{
+						"components": [
+							{
+								"internalType": "address",
+								"name": "account",
+								"type": "address"
+							},
+							{
+								"internalType": "uint256",
+								"name": "amount",
+								"type": "uint256"
+							}
+						],
+						"internalType": "struct FilaDoge.ValuePair[]",
+						"name": "hasRewardedInviterList",
+						"type": "tuple[]"
+					},
+					{
+						"components": [
+							{
+								"internalType": "address",
+								"name": "account",
+								"type": "address"
+							},
+							{
+								"internalType": "uint256",
+								"name": "amount",
+								"type": "uint256"
+							}
+						],
+						"internalType": "struct FilaDoge.ValuePair[]",
+						"name": "hasRewardedGamblerList",
+						"type": "tuple[]"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "player",
+						"type": "address"
+					}
+				],
+				"name": "fetchPersonalData",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "inviteeRewardReceived",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "gamblerRewardReceived",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "inviterRewardReceived",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "filaBalance",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			}
+		],
+		"devdoc": {
+			"kind": "dev",
+			"methods": {},
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"contracts/DataFetcher.sol": "DataFetcher"
+		},
+		"evmVersion": "paris",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": true,
+			"runs": 1000000
+		},
+		"remappings": []
+	},
+	"sources": {
+		"contracts/DataFetcher.sol": {
+			"keccak256": "0x848920af31c0699f174c1d9273b94c20c4db179d5580b18d90bd82dcacfe05f4",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://356bf137a761d7027aba13204ff9e2ea73f2d543be2453f5f38eea5844b36d64",
+				"dweb:/ipfs/Qma9GsXWN11FHa1rEAMahPjfZyPidV5eHxo7j5kaghA93S"
+			]
+		},
+		"contracts/FilaDoge.sol": {
+			"keccak256": "0x0f93ab7eb262d3923b3fafebf6bd54ac9e00dbbba9167083a1ec2ed4cf1cd567",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://5546f702b269559a79899e44ab4fc892022b7378aa53669f0c4990e1357c7cd2",
+				"dweb:/ipfs/QmZw3xjRXHt1PUzrEwDy1bGVKRAhSmktHTM27KdXWZArQG"
+			]
+		},
+		"node_modules/@openzeppelin/contracts/token/ERC20/ERC20.sol": {
+			"keccak256": "0x4ffc0547c02ad22925310c585c0f166f8759e2648a09e9b489100c42f15dd98d",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://15f52f51413a9de1ff191e2f6367c62178e1df7806d7880fe857a98b0b66253d",
+				"dweb:/ipfs/QmaQG1fwfgUt5E9nu2cccFiV47B2V78MM1tCy1qB7n4MsH"
+			]
+		},
+		"node_modules/@openzeppelin/contracts/token/ERC20/IERC20.sol": {
+			"keccak256": "0x9750c6b834f7b43000631af5cc30001c5f547b3ceb3635488f140f60e897ea6b",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://5a7d5b1ef5d8d5889ad2ed89d8619c09383b80b72ab226e0fe7bde1636481e34",
+				"dweb:/ipfs/QmebXWgtEfumQGBdVeM6c71McLixYXQP5Bk6kKXuoY4Bmr"
+			]
+		},
+		"node_modules/@openzeppelin/contracts/token/ERC20/extensions/IERC20Metadata.sol": {
+			"keccak256": "0x8de418a5503946cabe331f35fe242d3201a73f67f77aaeb7110acb1f30423aca",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://5a376d3dda2cb70536c0a45c208b29b34ac560c4cb4f513a42079f96ba47d2dd",
+				"dweb:/ipfs/QmZQg6gn1sUpM8wHzwNvSnihumUCAhxD119MpXeKp8B9s8"
+			]
+		},
+		"node_modules/@openzeppelin/contracts/utils/Context.sol": {
+			"keccak256": "0xe2e337e6dde9ef6b680e07338c493ebea1b5fd09b43424112868e9cc1706bca7",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://6df0ddf21ce9f58271bdfaa85cde98b200ef242a05a3f85c2bc10a8294800a92",
+				"dweb:/ipfs/QmRK2Y5Yc6BK7tGKkgsgn3aJEQGi5aakeSPZvS65PV8Xp3"
+			]
+		}
+	},
+	"version": 1
+}

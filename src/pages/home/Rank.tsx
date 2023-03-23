@@ -2,15 +2,34 @@
 import rank from "@/assets/rank.webp";
 import { Tabs } from "antd";
 import type { TabsProps } from "antd";
-import { useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import Mint from "./Mint";
 import Lottery from "./Lottery";
 import Referral from "./Referral";
+import axios from "axios";
+import { useDispatch } from "react-redux";
+
 export default () => {
-  const [active, setActive] = useState("1");
+  const dispath = useDispatch();
+  
   const onChange = (key: string) => {
     console.log(key);
   };
+
+  useEffect(() => {
+    axios.get('/api/getdata').then(res => { 
+      dispath({
+        type: 'home_rank/change',
+        payload:res.data ||{}
+      })
+    }).catch(() => { 
+      
+    })
+  }, [])
+  
+
+
+
 
   const items: TabsProps["items"] = [
     {

@@ -47,7 +47,6 @@ export default () => {
 
     const getBanlance = (account:string) => { 
       FethContract.fetchBalance(account).then((res: any) => { 
-        console.log('---banlance successfully')
     })
   }
 

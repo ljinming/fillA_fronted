@@ -44,13 +44,12 @@ class contract {
 
     async fetchBalance(account?: string): Promise<number | string> {
         this.account = account || this.account;
-        console.log('==fetchPersonalData==46547',this.account)
         return new Promise<number | string|any>((resolve, reject) => {
             this.myContract.methods
                 .fetchPersonalData(account)
                 .call({ form: this.account }, (err: any, res: any) => {
-                    
-                    const filaBalance = getValueDivide(Number(res.filaBalance), 18, 2);
+                    if (res) { 
+                             const filaBalance = getValueDivide(Number(res.filaBalance), 18, 2);
                     const gamblerRewardReceived = getValueDivide(Number(res.gamblerRewardReceived), 18, 2);
                      const inviteeRewardReceived = getValueDivide(Number(res.inviteeRewardReceived), 18, 2);
                     const inviterRewardReceived = getValueDivide(Number(res.inviterRewardReceived), 18, 2);
@@ -60,12 +59,13 @@ class contract {
                                     inviteeRewardReceived,
                                     inviterRewardReceived
                     }
-                    console.log('====5765',res,obj)
                     store.dispatch({
                             type: 'banlance/change',
                                 payload:obj
                             })                          
                     resolve(obj);
+                    }
+                   
                 });
         })
   }

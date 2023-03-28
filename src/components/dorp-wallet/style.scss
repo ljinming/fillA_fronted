@@ -1,0 +1,137 @@
+.account_img{
+    width: 35px !important;
+    cursor: pointer;
+}
+.wallet-connect{
+    display: flex;
+    align-items: center;
+    column-gap: 10px;
+    .connetc_network{
+        width: fit-content;
+         height: 32px;
+        padding: 0px 6px;
+        color: red;     
+        border-radius: 4px;
+          border: 1px solid transparent;
+        background-color: rgba(255, 150, 92, 0.1);
+        cursor: pointer;
+        &:hover {
+            border-color:  red;
+        }
+    }
+    .connect-file{
+        padding: 0px 12px;
+        color: #000;
+        background-color: rgba(255, 150, 92, 0.2);
+        border-radius: 30px;
+        &:hover{
+             border-color: transparent !important;
+        }
+    }
+    &_item{
+        display: flex;
+        align-items: center;
+    }
+    .value {
+        color: #FF6633;
+    }
+}
+
+
+.wallet-content{
+    width: 220px;
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        font-size: 16px;
+        row-gap: 20px;
+        padding: 0px 10px;
+        &_auth{
+            padding-bottom: 15px;
+            border-bottom: 1px dotted #ccc;
+        }
+        &_item{
+              display: flex;
+              align-items: center;
+              column-gap: 10px;
+               justify-content: space-between;
+             width: 100%;
+             .add_tonke_icon{
+                     display: flex;
+                     align-items: center;
+                     cursor: pointer;
+                     justify-content: center;
+                     width: 20px;
+                     height: 20px;
+                     border-radius: 50%;
+                     padding: 3px;
+                     background-color: #E4D7CF;
+
+                     &:hover {
+                         background-color: rgba(255, 150, 92, 0.6);
+                     }
+             }
+             .text-account {
+                 display: block;
+                 flex: 1;
+                 font-size: 16px;
+                // text-align: right;
+             }
+        }
+       
+        &_logout{
+            width: 100%;
+           height: 30px;
+           margin: auto;
+           display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid #E4D7CF;
+            border-radius: 4px;
+            cursor: pointer;
+            }
+  
+}
+
+@media screen and (max-width: 800px) {
+    .account_img {
+        width: 35px !important;
+        cursor: pointer;
+    }
+    .wallet-connect{
+             .connetc_network{
+                padding: 0px 6px;
+                height: 24px;
+             }
+              .connect-file {
+                  padding: 0px 12px;
+                  color: #000;
+                  background-color: rgba(255, 150, 92, 0.2);
+                  border-radius: 30px;
+
+                  &:hover {
+                      border-color: transparent !important;
+                  }
+              }
+    }
+    .wallet-content{
+          width: 220px;
+          &_item{
+                .add_tonke_icon {
+                    width: 20px;
+                    height: 20px;
+                   
+                    svg{
+                        width: 15px;
+                        height: 15px;
+                    }
+                }
+            height: 24px;
+          }
+          &_logout{
+              height: 24px;
+          }
+    }
+
+    
+}

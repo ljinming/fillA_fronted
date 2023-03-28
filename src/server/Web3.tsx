@@ -31,10 +31,6 @@ class contract {
   myBorrowList: Array<any> = [];
   minerList: Record<string, any> = {};
   constructor() {
-    //   const signer = provider.getSigner()
-    // this.contractAbi = JSON.parse(JSON.stringify(Fill.abi));
-    // this.contractAddress = '0x75AfF4881B535a5a363157ba7dBDA68f31EB9e25';
-
     this.contractAbi = JSON.parse(JSON.stringify(FilaDoge.output.abi));
     this.contractAddress = FilaDogeContract;
     this.myContract = new web3.eth.Contract(
@@ -45,6 +41,7 @@ class contract {
   }
 
   async getNetWork() { 
+    const res1 =await web3.eth.defaultCommon;
     const chainId = await web3.eth.getChainId();
     return chainId === 314
 
@@ -262,56 +259,7 @@ class contract {
     });
   }
 
-  // rank_mint(type: string) {
-  //   const menthod =
-  //     type === "claimed"
-  //       ? "hasRewardedInviteeAmount"
-  //       : type === "participants"
-  //       ? "hasRewardedInvitees"
-  //       : "nextInviteeReward";
-  //   return new Promise<string | number>((resolve, reject) => {
-  //     this.myContract.methods[menthod]().call(
-  //       { form: this.account },
-  //       (err: any, res: any) => {
-  //         const number =
-  //           type === "participants" ? res : getValueDivide(Number(res), 18, 0);
-  //         resolve(number);
-  //       }
-  //     );
-  //   });
-  // }
-
-  // rank_Table(type: string) {
-  //   const menthod =
-  //     type === "lottery" ? "hasRewardedGamblerList" : "hasRewardedInviterList";
-  //   return new Promise<Array<any>>((resolve, reject) => {
-  //     this.myContract.methods[menthod]().call(
-  //       { form: this.account },
-  //       (err: any, res: any) => {
-  //         const data: any = [];
-  //         res?.forEach((v: any) => {
-  //           const { account, amount } = v;
-  //           if (account !== '0x0000000000000000000000000000000000000000') { 
-  //           data.push({
-  //             account,
-  //             f4Address: fa.delegatedFromEthAddress(account,CoinType.MAIN).toString(),
-  //             amount: getValueDivide(Number(amount), 18, 0),
-  //           });
-  //           }
-         
-  //         });
-  //         data.sort((a: any, b: any) => {
-  //           return  Number(b.amount)-Number(a.amount);
-  //         });
-  //         const showData = data.length > 50 ? data.slice(0, 50) : data;
-  //         const newData = [...showData].map((t:any,index:number) => { 
-  //           return {...t,sortIndex:index}
-  //         })
-  //         resolve(newData);
-  //       }
-  //     );
-  //   });
-  // }
+ 
 }
 const FilaContract = new contract();
 

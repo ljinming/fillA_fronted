@@ -40,8 +40,14 @@ export default () => {
       }
     };
 
+    
+
     if (window.ethereum) {
       window.ethereum.on("accountsChanged", handleAccountsChanged);
+    //  window.ethereum.on('connect', (connectInfo: any) => { 
+    //   console.log('====657567connectInfo',connectInfo)
+    //   });
+     
     } else {
       console.log("=不支持钱包 || 未下载钱包");
     }

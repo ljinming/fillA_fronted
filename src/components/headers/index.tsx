@@ -1,8 +1,6 @@
 /** @format */
 import logo from "@/assets/logo.svg";
-import Wallet from "./Wallet";
-import { LogoutIcon } from "@/svgIcons";
-
+import Dorpwallet from '@/components/dorp-wallet';
 import "./style.scss";
 
 export default () => {
@@ -11,6 +9,7 @@ export default () => {
     localStorage.removeItem("login");
     window.location.reload();
   };
+  
   return (
     <div className='header'>
       <div
@@ -22,10 +21,11 @@ export default () => {
         <span className='header_logo_text'>FilaDoge</span>
       </div>
       <div className='header_right'>
-        <Wallet />
+         <Dorpwallet />
+         {/* <Wallet /> 
         <span className='logout' onClick={logout}>
           {LogoutIcon}
-        </span>
+        </span> */}
       </div>
     </div>
   );

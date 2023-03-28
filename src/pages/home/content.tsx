@@ -6,12 +6,14 @@ import "./style.scss";
 import { useEffect, useRef, useState } from "react";
 import phone from "@/assets/phone.webp";
 import treat from '@/assets/treat.png';
+// import { getAccessToken } from "@/server/twitter";
 
 export default () => {
   const chartRef = useRef<HTMLDivElement>(null);
   const [active, setActive] = useState("introduce-1");
   useEffect(() => {
     loadContent(2);
+  //  getAccessToken()
   }, []);
 
 

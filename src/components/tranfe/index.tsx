@@ -47,7 +47,7 @@ export default (props: Props) => {
     }
         const isNetwork = await Web3.getNetWork()
         if (!isNetwork) { 
-              return  notification.warning({
+          return  notification.warning({
             message: "",
             description: 'Please make sure the Filecoin Network is selected in your wallet.',
             duration: 10,

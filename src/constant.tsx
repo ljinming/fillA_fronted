@@ -11,6 +11,7 @@ import { twitter, medium } from "./svgIcons";
 import fa from "@glif/filecoin-address";
 import { FormOutlined } from '@ant-design/icons';
 import { warningIcon, successIcon, githup } from '@/svgIcons';
+import { getValueDivide } from "./utils";
 
 
 export const FilaDogeContract = "0x7B90337f65fAA2B2B8ed583ba1Ba6EB0C9D7eA44";
@@ -151,7 +152,6 @@ export const columns: any = [
     align: "center",
     title: "Ranking",
     render: (text: any, Recor: any, index: any) => {
-      console.log('----46',index)
       const url =
         index === 0
           ? champion
@@ -171,10 +171,12 @@ export const columns: any = [
   }},
   {
     dataIndex: "Amount", title: "Rewards",
-    // render: (v: number | string) => { 
-    //             return Number(v).toLocaleString()
+    render: (v: number | string) => { 
+      const data = getValueDivide(Number(v), 18, 0);
+      
+      return Number(data).toLocaleString()
 
-    // }
+    }
   },
 ];
 

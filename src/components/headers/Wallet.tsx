@@ -1,5 +1,5 @@
 /** @format */
-import { loginMarck } from "@/server/account";
+import { addNetwork, addToken, loginMarck } from "@/server/account";
 import { useState, useContext, useEffect } from "react";
 import { MyContext } from "@/pages/content";
 import CSCopy from "../cs-copy";
@@ -7,8 +7,8 @@ import { Button } from "antd";
 import Tranfe from '@/components/tranfe'
 import { shallowEqual, useSelector } from "react-redux";
 import FethContract from "@/server/DataFetcher";
+import Web3 from "@/server/Web3";
 
-//f410flairseamy5sesqaea5r5szlpob7xsv22rw5sopq
 
 export default () => {
   const [account, setAccount] = useState("");
@@ -28,7 +28,15 @@ export default () => {
 
   const handleClick = () => {
     // 链接钱包
-    loginMarck()?.then((res: any) => {
+    loginMarck()?.then( async (res: any) => {
+      const aq = await Web3.getNetWork();
+      if (!aq) { 
+        //add network 
+        const add:any = await addNetwork();
+       
+      }
+      addToken()
+
       setAccount(res[0]);
       context.setAccount(res[0]);
       localStorage.setItem("login", JSON.stringify(res));

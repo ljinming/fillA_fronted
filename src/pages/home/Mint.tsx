@@ -39,15 +39,15 @@ export default () => {
     <div className='rank-card'>
       <div className='card-item'>
         <h3 className='title'>$ FLD for the next Mint</h3>
-        <span className='value'>{NextInviteeReward}</span>
+        <span className='value'>{Number(NextInviteeReward).toLocaleString()}</span>
       </div>
       <div className='card-item'>
         <h3 className='title'>$ FLD claimed</h3>
-        <span className='value'>{HasRewardedInviteeAmount}</span>
+        <span className='value'>{Number(HasRewardedInviteeAmount).toLocaleString()}</span>
       </div>
       <div className='card-item'>
         <h3 className='title'>Addresses participated</h3>
-        <span className='value'>{HasRewardedInvitees}</span>
+        <span className='value'>{Number(HasRewardedInvitees).toLocaleString()}</span>
       </div>
     </div>
   );

@@ -8,6 +8,7 @@ import Lottery from "./Lottery";
 import Referral from "./Referral";
 import axios from "axios";
 import { useDispatch } from "react-redux";
+import { getValueDivide } from "@/utils";
 
 export default () => {
   const dispath = useDispatch();
@@ -18,9 +19,18 @@ export default () => {
 
   useEffect(() => {
     axios.get('/api/getdata').then(res => { 
+      const {HasRewardedInviteeAmount ,HasRewardedInvitees,NextInviteeReward} = res.data || {}
+      const obj = {
+        HasRewardedInviteeAmount: HasRewardedInviteeAmount&&getValueDivide(Number(HasRewardedInviteeAmount), 18, 0),
+        HasRewardedInvitees:HasRewardedInvitees,
+        NextInviteeReward:NextInviteeReward&&getValueDivide(Number(NextInviteeReward), 18, 0),
+      }
       dispath({
         type: 'home_rank/change',
-        payload:res.data ||{}
+        payload: {
+          ...res.data,
+          ...obj
+        }
       })
     }).catch(() => { 
       

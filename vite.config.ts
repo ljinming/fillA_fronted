@@ -22,7 +22,12 @@ export default defineConfig({
         target: "http://47.88.25.203:8001",
         changeOrigin: true,
         rewrite: (path) => path.replace(/^\/api/, ""),
-      },
+        },
+        "/twitter": {
+        target: "https://api.twitter.com",
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/twitter/, ""),
+        }
     },
   },
   plugins: [react()],

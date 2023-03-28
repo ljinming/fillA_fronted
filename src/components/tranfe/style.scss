@@ -55,6 +55,17 @@
 }
 
 @media screen and (max-width: 800px){
+.tranfe {
+    &-icon{
+        width: 20px !important;
+        height: 20px !important;
+        svg{
+            width: 15px ;
+             height: 15px ;
+        }
+    }
+
+}
  .calc-box{
         .showAddress{
             height: 66px;

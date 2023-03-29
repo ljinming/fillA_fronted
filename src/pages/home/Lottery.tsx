@@ -7,18 +7,8 @@ import { columns } from "@/constant";
 import { shallowEqual, useSelector } from "react-redux";
 
 export default () => {
-  //const [data, setData] = useState([]);
   const [current,setCurrent] = useState(1);
-  // useEffect(() => {
-  //   load();
-  // }, []);
-  
 
-  // const load = () => {
-  //   FilaContract.rank_Table("lottery").then((res: any) => {
-  //     setData(res);
-  //   });
-  // };
 
 
    const { HasRewardedGamblerList } = useSelector(
@@ -27,7 +17,7 @@ export default () => {
    );
   
   const data = useMemo(() => {
-    return HasRewardedGamblerList?.filter((v:any)=>v?.Account!== ('0x0000000000000000000000000000000000000000'))||[]
+    return HasRewardedGamblerList;
    },[HasRewardedGamblerList])
 
   return (
@@ -39,14 +29,14 @@ export default () => {
               showQuickJumper: false,
               pageSize: 5,
               showSizeChanger: false,
-              total:data.length,
+              total:HasRewardedGamblerList.length,
               onChange: (cur) => {
-                setCurrent(cur)
+                setCurrent(cur) 
               },
             }  
       }
      
-      columns={columns}
-      dataSource={data}></Table>
+      columns={columns(current) ||[]}
+      dataSource={HasRewardedGamblerList}></Table>
   );
 };

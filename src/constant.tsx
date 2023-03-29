@@ -146,7 +146,8 @@ export const content_text = [
   },
 ];
 
-export const columns: any = [
+export const columns = (current:number):Array<any> => { 
+  return [
   {
     dataIndex: "sortIndex",
     align: "center",
@@ -159,8 +160,9 @@ export const columns: any = [
           ? runnerup
           : index === 2
           ? thirdrunner
-          : "";
-      return index < 3 ? <img src={url} className='rank-icon' /> : index + 1;
+              : "";
+      const showIndex = (current-1)*5 +index + 1
+      return showIndex < 4 ? <img src={url} className='rank-icon' /> : showIndex;
     },
   },
 
@@ -179,6 +181,8 @@ export const columns: any = [
     }
   },
 ];
+}
+
 
 export const links = [
   {

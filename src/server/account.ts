@@ -40,7 +40,7 @@ const addNetwork = async () => {
                   decimals: 18
                 },
                 rpcUrls: ['https://api.node.glif.io/'],
-                blockExplorerUrls: ['https://filfox.info/en'],
+                blockExplorerUrls: ['https://filscan.io/address/general?address='],
               },
             ],
           });

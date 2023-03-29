@@ -5,6 +5,7 @@ import { useEffect, useMemo, useState } from "react";
 import FilaContract from "@/server/Web3";
 import { columns } from "@/constant";
 import { shallowEqual, useSelector } from "react-redux";
+import CompoundedSpace from "antd/es/space";
 export default () => {
   const [current, setCurrent] = useState(1);
 
@@ -14,9 +15,9 @@ export default () => {
    );
   
   const data = useMemo(() => {
-    return HasRewardedInviterList?.filter((v:any)=>v?.Account!== ('0x0000000000000000000000000000000000000000'))||[]
+    return HasRewardedInviterList?.filter((v: any) => v?.Account !== ('0x0000000000000000000000000000000000000000')) || []
    },[HasRewardedInviterList])
-  
+   
   return (
     <Table
        pagination={
@@ -33,7 +34,7 @@ export default () => {
             }
          
       }
-      columns={columns}
+      columns={columns(current)}
       dataSource={data}
     />
   );

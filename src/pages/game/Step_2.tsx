@@ -269,7 +269,7 @@ export default () => {
                 <div className='input-label'>
                   <div>
                     {item.label}
-                    { item.key === 'game' && !start &&<span className="start-time">*begins March 28 15:14:00 UTC</span>}
+                    { item.key === 'game' && start &&<span className="start-time">Lottery is on!!! 1,000 luckiest drawers will share an extra 8 billion FLD</span>}
                   </div>
                 
                   <Input

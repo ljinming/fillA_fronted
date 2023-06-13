@@ -291,9 +291,9 @@ export default () => {
                 className={`btn border-btn ${item.key === 'game' ? start ? '':'disabled-btn':''}`}
                 onClick={() => { 
                   if (loading[item.key]) return
-                  if (item.key === 'game' && !start) { 
-                    return
-                  }
+                  // if (item.key === 'game' && !start) { 
+                  //   return
+                  // }
                  handleClick(item.key)
                 }}>
                 {loading[item.key] ? <LoadingOutlined /> : item.btnText}

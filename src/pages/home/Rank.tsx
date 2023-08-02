@@ -6,9 +6,11 @@ import { useContext, useEffect, useState } from "react";
 import Mint from "./Mint";
 import Lottery from "./Lottery";
 import Referral from "./Referral";
+import Market from "./Market";
 import axios from "axios";
 import { useDispatch } from "react-redux";
 import { getValueDivide } from "@/utils";
+import filscanLogo from '@/assets/logo2.png'
 
 export default () => {
   const dispath = useDispatch();
@@ -57,6 +59,13 @@ export default () => {
       key: "2",
       label: `Lottery`,
       children: <Lottery />,
+    },
+    {
+      key: "4",
+      label: <span style={{ display: 'flex', alignItems: 'center', columnGap: '6px' }}><img className='link' onClick={() => { 
+        window.open('https://filscan.io/token/0x7b90337f65faa2b2b8ed583ba1ba6eb0c9d7ea44/')
+      }} src={filscanLogo} style={{width:20}} /> Transactions</span>,
+      children: <Market />,
     },
   
   ];

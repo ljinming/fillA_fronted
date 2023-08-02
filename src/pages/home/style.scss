@@ -26,6 +26,13 @@
 //         }
 //       }
 
+.link{
+    cursor: pointer;
+    &:hover{
+         color: #FF6633;
+    }
+}
+
 .home{
     margin-top: 50px;
     &_header{
@@ -282,6 +289,32 @@
 
 .rank-icon{
     width: 25px;
+}
+
+.market_content{
+    &_header{
+        display: flex;
+        gap: 50px;
+        &_item{
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+        }
+        &_value{
+                 font-size: 16px;
+                 font-weight: 800;
+                 margin-left: 10px;
+                 color: #FF6633;
+        }
+    }
+    &_content{
+        position: relative;
+        &_des{
+            position: absolute;
+            bottom: 20px;
+        }
+    }
+    
 }
 @media screen and (max-width: 800px) {
    .home{

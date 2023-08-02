@@ -1,5 +1,6 @@
 /** @format */
 import BigNumber from "bignumber.js";
+import dayjs from "dayjs";
 
 export const setStr = (str: string) => {
   return `${String(str).slice(0, 6)}...${String(str).slice(-4)}`;
@@ -17,6 +18,14 @@ export function getValueDivide(
 export function getValueMultiplied(num: number | string, pow: number = 18) {
   return new BigNumber(num).multipliedBy(Math.pow(10, pow)).toFixed(0);
 }
+
+export function isIndent(str: string, unit: number = 6) { 
+    return str&&unit&&str.length > unit*2 ? str?.slice(0,unit)+'...'+ str?.slice(-unit):str
+}
+export function formatDateTime(time: number | string, str: string = 'YYYY-MM-DD HH:mm:ss') {
+  if (!time) return '--'
+      return typeof time === 'number'? dayjs(time * 1000).format(str):dayjs(time).format(str)
+ }
 
 
  export const debounce = <T extends (...args: any) => any>(
@@ -42,3 +51,4 @@ export function getValueMultiplied(num: number | string, pow: number = 18) {
     }, delay)
   }
 }
+

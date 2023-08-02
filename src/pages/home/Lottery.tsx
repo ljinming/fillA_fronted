@@ -29,7 +29,7 @@ export default () => {
               showQuickJumper: false,
               pageSize: 5,
               showSizeChanger: false,
-              total:HasRewardedGamblerList.length,
+              total:HasRewardedGamblerList?.length||0,
               onChange: (cur) => {
                 setCurrent(cur) 
               },

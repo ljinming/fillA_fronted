@@ -11,7 +11,7 @@ import { twitter, medium } from "./svgIcons";
 import fa from "@glif/filecoin-address";
 import { FormOutlined } from '@ant-design/icons';
 import { warningIcon, successIcon, githup } from '@/svgIcons';
-import { getValueDivide } from "./utils";
+import { formatDateTime, getValueDivide, isIndent } from "./utils";
 
 
 export const FilaDogeContract = "0x7B90337f65fAA2B2B8ed583ba1Ba6EB0C9D7eA44";
@@ -182,6 +182,31 @@ export const columns = (current:number):Array<any> => {
   },
 ];
 }
+
+export const market_columns = [
+    {
+        dataIndex: 'cid', title: 'message_cid', render: (text:string) => { 
+            return <span className="link" onClick={() => { 
+                window.open(`https://filscan.io/message/${text}`)
+            }}>{isIndent(text) }</span>
+        }
+    },
+    {dataIndex:'method',title:'method'},
+    {dataIndex:'time',title:'time',render:(text:string)=>formatDateTime(text)},
+  {
+    dataIndex: 'from', title: 'from',
+    render: (text: string) => { 
+        return <span className="link" onClick={() => { 
+                window.open(`https://filscan.io/address/${text}`)
+            }}>{isIndent(text) }</span>
+        }},
+    {dataIndex: 'to', title: 'to', render: (text: string) => { 
+        return <span className="link" onClick={() => { 
+                window.open(`https://filscan.io/address/${text}`)
+            }}>{isIndent(text) }</span>
+        }},
+  { dataIndex: 'amount', title: 'amount', render: (text:string|number) => Number(text).toLocaleString()},
+]
 
 
 export const links = [

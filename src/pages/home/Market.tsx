@@ -78,7 +78,7 @@ function Market() {
                  columns={market_columns ||[]}
                 dataSource={data}>
             </Table>
-            <div className="market_content_content_des"> Transaction data is monitored and maintained by <a  className='link' href="https://filscan.io/token/0x7b90337f65faa2b2b8ed583ba1ba6eb0c9d7ea44/">Filscan.io</a></div>
+            <div className="market_content_content_des"> Transaction data is monitored and maintained by <a target="_blank" className='link' href="https://filscan.io/token/0x7b90337f65faa2b2b8ed583ba1ba6eb0c9d7ea44/">Filscan.io</a></div>
         </div>
          
     </div>

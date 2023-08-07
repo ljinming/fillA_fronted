@@ -246,8 +246,8 @@
                 border-radius: 32px;
                 border: 2px solid #F4F5F6;
                 &_content{
-                    height: 380px;
-                    overflow: auto;
+                    height: 460px;
+                    overflow: hidden;
                 }
                 .rank-card{
                     max-height: 500px;
@@ -313,16 +313,37 @@
     &_content{
         position: relative;
           overflow: auto;
-          height: 320px;
+          padding-bottom: 50px;
           &_title{
              margin-top: 10px;
           }
         &_des{
+            display: flex;
             position: absolute;
-            bottom: 20px;
+            width: 100%;
+            justify-content: space-between;
+            align-items: center;
+            bottom: 0px;
         }
     }
     
+}
+.custom_table{
+    height: 320px;
+    overflow: auto;
+}
+.custom_table_container{
+    position: relative;
+    .ant-table{
+         height: 400px;
+         overflow: auto;
+    }
+   
+    .custom_table_container_pagination{
+        position: absolute;
+            bottom: -63px;
+            right: 0px;
+    }
 }
 @media screen and (max-width: 800px) {
    .home{

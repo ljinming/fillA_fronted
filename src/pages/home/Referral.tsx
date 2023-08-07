@@ -20,20 +20,22 @@ export default () => {
    
   return (
     <Table
-       pagination={
-          {
+            className="custom_table_container"
+     pagination={
+        {
+            className:'custom_table_container_pagination',
               position: ["bottomRight"],
               current: current,
               showQuickJumper: false,
-              pageSize: 5,
+              pageSize: 10,
               showSizeChanger: false,
-              total:data.length,
+              total:data?.length||0,
               onChange: (cur) => {
-                setCurrent(cur)
+                setCurrent(cur) 
               },
-            }
-         
+            }  
       }
+     
       columns={columns(current)}
       dataSource={data}
     />

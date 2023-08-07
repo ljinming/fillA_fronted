@@ -161,7 +161,7 @@ export const columns = (current:number):Array<any> => {
           : index === 2
           ? thirdrunner
               : "";
-      const showIndex = (current-1)*5 +index + 1
+      const showIndex = (current - 1) * 10 + index + 1;
       return showIndex < 4 ? <img src={url} className='rank-icon' /> : showIndex;
     },
   },

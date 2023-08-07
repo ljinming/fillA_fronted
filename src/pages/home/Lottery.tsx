@@ -1,6 +1,6 @@
 /** @format */
 
-import { Table } from "antd";
+import { Pagination, Table } from "antd";
 import { useEffect, useMemo, useState } from "react";
 import FilaContract from "@/server/Web3";
 import { columns } from "@/constant";
@@ -21,14 +21,16 @@ export default () => {
    },[HasRewardedGamblerList])
 
   return (
+        <div>
     <Table
-      className="custom_table"
+      className="custom_table_container"
       pagination={
-          {
+        {
+            className:'custom_table_container_pagination',
               position: ["bottomRight"],
               current: current,
               showQuickJumper: false,
-              pageSize: 5,
+              pageSize: 10,
               showSizeChanger: false,
               total:HasRewardedGamblerList?.length||0,
               onChange: (cur) => {
@@ -39,5 +41,7 @@ export default () => {
      
       columns={columns(current) ||[]}
       dataSource={HasRewardedGamblerList}></Table>
+
+    </div>
   );
 };

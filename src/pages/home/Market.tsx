@@ -1,5 +1,5 @@
 import { FilaDogeContract, market_columns } from "@/constant";
-import { Radio, Table, Tabs } from "antd";
+import { Table } from "antd";
 import axios from "axios"
 import { useEffect, useState } from "react";
 
@@ -8,12 +8,15 @@ const defaultUrl = 'https://api-v2.filscan.io';
 
 
 function Market() { 
-
+    const [current,setCurrent]=useState(1)
     const [transTotal, setTransTotal] = useState(0);
     const [ownerTotal,setOwnerTotal] = useState(0)
-    const [data, setData] = useState([]);
+    const [data, setData] = useState({
+        items: [],
+        total:0,
+    });
     const [loading,setLoading] = useState(false)
-    const [active,setActive]= useState('1h')
+    const [active,setActive]= useState('30d')
 
  useEffect(() => {
      axios.post(defaultUrl + '/api/v1/ERC20Transfer', {contract_id:FilaDogeContract.toLocaleLowerCase(),page:1,limit:5}).then(res => { 
@@ -30,16 +33,16 @@ function Market() {
      
  }, [])
     
-    const load = (act?: string) => { 
+    const load = (act?: string,cur?:number) => { 
         setLoading(true)
+        const index = cur || current;
         const duration = act|| active
-           axios.post(defaultUrl + '/api/v1/ERC20RecentTransfer', { contract_id: FilaDogeContract.toLocaleLowerCase(), duration }).then(res => { 
-         console.log('----4',res.data.result.items)
-               setData(res.data.result.items)
+           axios.post(defaultUrl + '/api/v1/ERC20RecentTransfer', { contract_id: FilaDogeContract.toLocaleLowerCase(), duration ,limit:4,page:index-1}).then(res => { 
+               setData(res.data.result)
                setLoading(false)
-    }).catch(() => { 
-      
-    })
+                }).catch(() => { 
+                
+                })
     }
     
     
@@ -55,33 +58,29 @@ function Market() {
         </div>
         </div>
         <div className="market_content_content">
-            <h3>Transaction details</h3>
-            <Radio.Group value={active} onChange={(e) => { 
-                setActive(e.target.value)
-                load(e.target.value)
-            }} style={{ marginBottom: 16 }}>
-                <Radio.Button value="1h">1h</Radio.Button>
-                <Radio.Button value="1d">1D</Radio.Button>
-                <Radio.Button value="7d">7D</Radio.Button>
-            </Radio.Group>
+            <h3 className="market_content_content_title">30-day transaction details</h3>
             <Table
-            pagination={
+            className="custom_table"
+             pagination={
                 {
-              position: ["bottomRight"],
-              showQuickJumper: false,
-              pageSize: 5,
-              showSizeChanger: false,
-            
-            }  
-      }
+                 position: ["bottomRight"],
+                    showQuickJumper: false,
+                    pageSize: 5,
+                    current:current,
+                    total:data.total,
+                    showSizeChanger: false,
+                    onChange: (value) => { 
+                        setCurrent(value)
+                        load(active,value)
+                    }
+                }  
+                }
                 loading={ loading}
                  columns={market_columns ||[]}
-                dataSource={data}>
+                dataSource={data?.items || []}>
             </Table>
-            <div className="market_content_content_des"> Transaction data is monitored and maintained by <a target="_blank" className='link' href="https://filscan.io/token/0x7b90337f65faa2b2b8ed583ba1ba6eb0c9d7ea44/">Filscan.io</a></div>
         </div>
-         
+         <div className="market_content_content_des">Full transaction data is monitored and maintained by <a target="_blank" className='link' href="https://filscan.io/token/0x7b90337f65faa2b2b8ed583ba1ba6eb0c9d7ea44/">Filscan.io</a></div>
     </div>
 }
 export default Market
-

@@ -22,6 +22,7 @@ export default () => {
 
   return (
     <Table
+      className="custom_table"
       pagination={
           {
               position: ["bottomRight"],

@@ -27,10 +27,11 @@
 //       }
 
 .link{
+    color: #1677ff;
     cursor: pointer;
-    &:hover{
-         color: #FF6633;
-    }
+    // &:hover{
+    //      color: #FF6633;
+    // }
 }
 
 .home{
@@ -221,11 +222,11 @@
     }
     &-rank{
         width: 1376px;
-        height: 720px;
+        height: 600px;
         margin: 50px auto;
         background: rgba(248, 248, 249, 0.5);
         border-radius: 48px;
-         margin-bottom: 300px;
+        margin-bottom: 300px;
         .content{
             position: relative;
             display: flex;
@@ -233,11 +234,9 @@
             margin: auto;
             padding-top: 64px;
             .rank-list{
+                z-index: 2;
                 position: absolute;
                 padding: 20px 50px;
-                max-height: 500px;
-                overflow: auto;
-                min-height: 400px;
                 width: 100%;
                 top: 110%;
                 left: 50%;
@@ -246,8 +245,12 @@
                 box-shadow: 0px 40px 32px -24px rgba(15,15,15,0.12);
                 border-radius: 32px;
                 border: 2px solid #F4F5F6;
-                overflow: auto;
+                &_content{
+                    height: 380px;
+                    overflow: auto;
+                }
                 .rank-card{
+                    max-height: 500px;
                     .card-item{
                         font-family: Poppins;
                         margin-bottom: 20px;
@@ -309,6 +312,11 @@
     }
     &_content{
         position: relative;
+          overflow: auto;
+          height: 320px;
+          &_title{
+             margin-top: 10px;
+          }
         &_des{
             position: absolute;
             bottom: 20px;
@@ -394,7 +402,11 @@
         .home-rank {
             .content {
              .rank-list{
-             max-height: 360px;
+                 z-index: 2;
+              .rank-list_content {
+                  height: 380px;
+                  overflow: auto;
+              }
             .rank-card{
                 .card-item {
                     .title{
@@ -411,6 +423,13 @@
    }
    .rank-icon{
     width: 15px;
-}
+    }
+.market_content{
+    &_header{}
+    &_content{
+        height: 400px;
+
+    }
+}   
 }
 

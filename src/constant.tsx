@@ -185,27 +185,27 @@ export const columns = (current:number):Array<any> => {
 
 export const market_columns = [
     {
-        dataIndex: 'cid', title: 'message_cid', render: (text:string) => { 
+        dataIndex: 'cid', title: 'Message ID', render: (text:string) => { 
             return <span className="link" onClick={() => { 
                 window.open(`https://filscan.io/message/${text}`)
             }}>{isIndent(text) }</span>
         }
     },
-    {dataIndex:'method',title:'method'},
-    {dataIndex:'time',title:'time',render:(text:string)=>formatDateTime(text)},
+    {dataIndex:'method',title:'Method'},
+    {dataIndex:'time',title:'Time',render:(text:string)=>formatDateTime(text)},
   {
-    dataIndex: 'from', title: 'from',
+    dataIndex: 'from', title: 'From',
     render: (text: string) => { 
         return <span className="link" onClick={() => { 
                 window.open(`https://filscan.io/address/${text}`)
             }}>{isIndent(text) }</span>
         }},
-    {dataIndex: 'to', title: 'to', render: (text: string) => { 
+    {dataIndex: 'to', title: 'To', render: (text: string) => { 
         return <span className="link" onClick={() => { 
                 window.open(`https://filscan.io/address/${text}`)
             }}>{isIndent(text) }</span>
         }},
-  { dataIndex: 'amount', title: 'amount', render: (text:string|number) => Number(text).toLocaleString()},
+  { dataIndex: 'amount', title: 'Amount', render: (text:string|number) => Number(text).toLocaleString()},
 ]
 
 

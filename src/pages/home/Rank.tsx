@@ -47,25 +47,33 @@ export default () => {
     {
       key: "1",
       label: `Mint`,
-      children: <Mint />,
+      children: <div className='rank-list_content'>
+         <Mint />
+      </div>,
       
     },
       {
       key: "3",
       label: `Referral`,
-      children: <Referral />,
+        children: <div className='rank-list_content'>
+        <Referral />
+      </div>,
     },
     {
       key: "2",
       label: `Lottery`,
-      children: <Lottery />,
+      children: <div className='rank-list_content'>
+         <Lottery />
+      </div> 
     },
     {
       key: "4",
       label: <span style={{ display: 'flex', alignItems: 'center', columnGap: '6px' }}><img className='link' onClick={() => { 
         window.open('https://filscan.io/token/0x7b90337f65faa2b2b8ed583ba1ba6eb0c9d7ea44/')
       }} src={filscanLogo} style={{width:20}} /> Transactions</span>,
-      children: <Market />,
+      children: <div className='rank-list_content'>
+         <Market />
+      </div>,
     },
   
   ];

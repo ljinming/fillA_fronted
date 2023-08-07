@@ -33,11 +33,11 @@ function Market() {
      
  }, [])
     
-    const load = (act?: string,cur?:number) => { 
+    const load = (act?: string,cur?:number,pageSize?:number) => { 
         setLoading(true)
         const index = cur || current;
         const duration = act|| active
-           axios.post(defaultUrl + '/api/v1/ERC20RecentTransfer', { contract_id: FilaDogeContract.toLocaleLowerCase(), duration ,limit:10,page:index-1}).then(res => { 
+           axios.post(defaultUrl + '/api/v1/ERC20RecentTransfer', { contract_id: FilaDogeContract.toLocaleLowerCase(), duration ,limit:pageSize||10,page:index-1}).then(res => { 
                setData(res.data.result)
                setLoading(false)
                 }).catch(() => { 
@@ -75,9 +75,9 @@ function Market() {
                  Full transaction data is monitored and maintained by
             <a target="_blank" className='link' href="https://filscan.io/token/0x7b90337f65faa2b2b8ed583ba1ba6eb0c9d7ea44/">Filscan.io</a>
             </div>
-            <Pagination defaultCurrent={current} total={data.total} onChange={ (value) => { 
+            <Pagination defaultCurrent={current} total={data.total} onChange={(value,pageSize) => { 
                         setCurrent(value)
-                        load(active,value)
+                        load(active,value,pageSize)
                     } } />
         </div>
     </div>
